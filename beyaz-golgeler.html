@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyaz Gölgeler | Meyra Özer</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PROJEYE ÖZEL RENK AYARI */
+        :root {
+            --project-glow-color: rgba(186, 181, 171, 0.25); /* Kapağın o asil dumanlı platin/gümüş aurası */
+        }
+
+        body {
+            padding: 0 !important;
+            background-color: #080808;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ÖZEL AMBİANS IŞIĞI (SİSLİ VE DUMANLI) */
+        .project-bg-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, var(--project-glow-color) 0%, transparent 75%);
+            filter: blur(140px); 
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.95); }
+            100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* UÇUŞAN MİSTİK GÜMÜŞ YILDIZLAR SİSTEMİ */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(189, 185, 176, 0.75); 
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(186, 181, 171, 0.8), 0 0 15px rgba(189, 185, 176, 0.3);
+            animation: flyAndTwinkle linear infinite;
+        }
+
+        @keyframes flyAndTwinkle {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* KEMİK İSKELET BÖLÜM 1: YAN YANA EDİTORYAL DÜZEN */
+        .case-study-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 140px 50px 60px 50px;
+            gap: 80px;
+        }
+
+        /* SOL TARAF: AKICI METİN ALANI */
+        .project-meta-side {
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .back-btn {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .back-btn:hover { color: #fff; }
+
+        /* PREMIUM EDİTORYAL KART TASARIMI */
+        .editorial-card {
+            background: rgba(12, 12, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #beb9b0; 
+            border-radius: 8px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* JİLET GİBİ KESKİN GEMOLA BAŞLIĞI */
+        .case-study-container .editorial-card h1 {
+            font-family: 'Gemola', sans-serif !important; 
+            font-size: 3.40rem !important; 
+            line-height: 1.2 !important;   
+            margin-bottom: 16px !important;
+            letter-spacing: 1px !important;
+            text-transform: none !important; 
+            font-weight: 400 !important; 
+            
+            /* İSTEDİĞİN GİBİ: Bulanık parlamalar silindi, harfler jilet gibi net ve keskin kaldı */
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.95)) !important;
+        }
+
+        /* BAŞLIK METALİK GRADYAN DOKUNUŞU */
+        .case-study-container .editorial-card h1 span {
+            display: inline-block !important; 
+            background: linear-gradient(135deg, #f0ede9 0%, #beb9b0 45%, #918c83 70%, #3d3b37 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            margin-right: 12px !important;
+        }
+
+        .editorial-card .project-category {
+            font-size: 0.75rem; 
+            color: #beb9b0; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* PROJE KÜNYESİ (GRID) */
+        .project-spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-item {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .spec-item span {
+            display: block;
+            font-size: 0.70rem; 
+            color: #969187;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        /* BEMBEYAZ VE MEDIUM AÇIKLAMALAR */
+        .project-description {
+            color: #ffffff !important; 
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-weight: 500 !important; 
+            letter-spacing: 0.3px;
+        }
+        .project-description p { margin-bottom: 15px; }
+        .project-description p:last-child { margin-bottom: 0; }
+
+        /* SAĞ TARAF: YAN GALERİ KABI (İLK 2 FOTOĞRAF) */
+        .project-visuals-side {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* KEMİK İSKELET BÖLÜM 2: METİN BİTTİKTEN SONRA EKRANI KAPLAYAN DEV GALERİ */
+        .full-width-visuals {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 50px 140px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        /* GENEL GÖRSEL STİLLERİ */
+        .showcase-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(10, 10, 10, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .showcase-img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 40px rgba(255,255,255,0.05);
+        }
+
+        .img-wide { width: 100%; }
+        .img-focus { width: 85%; align-self: flex-end; }
+        .img-centered { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+        /* TELEFON UYUMU */
+        @media (max-width: 992px) {
+            .case-study-container {
+                flex-direction: column;
+                padding: 100px 20px 30px 20px;
+                gap: 50px;
+            }
+            .project-meta-side { max-width: 100%; }
+            .case-study-container .editorial-card h1 { font-size: 2.3rem !important; }
+            .full-width-visuals { padding: 0 20px 100px 20px; gap: 40px; }
+            .img-focus, .img-centered { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="star-field" id="starField"></div>
+
+    <div class="project-bg-glow"></div>
+
+    <div class="case-study-container">
+        
+        <aside class="project-meta-side">
+            <a href="javascript:history.back()" class="back-btn">← GERİ DÖN</a>
+            
+            <div class="editorial-card">
+                <h1><span>BEYAZ</span> <span>GÖLGELER</span></h1>
+                <div class="project-category">KİTAP KAPAĞI TASARIMI</div>
+                
+                <div class="project-spec-grid">
+                    <div class="spec-item">
+                        <span>YIL</span> 2026
+                    </div>
+                    <div class="spec-item">
+                        <span>ARAÇLAR</span> Photoshop, Illustrator
+                    </div>
+                    <div class="spec-item">
+                        <span>TÜR</span> Psikik / Gotik / Gizem
+                    </div>
+                    <div class="spec-item">
+                        <span>ODAK</span> Konsept & İllüstrasyon
+                    </div>
+                </div>
+
+                <div class="project-description">
+                    <p>Beyaz Gölgeler için hazırladığım kapak tasarımı, eserin karanlık, gotik ve psikolojik gerilim yüklü temasını sinematik bir atmosfere dönüştürmeye odaklanıyor. Tasarımın görsel stratejisi, bütünüyle zıtlıkların yarattığı estetik gerilim üzerine kurulu. Merkezde yer alan, kırılganlığı ve saflığı simgeleyen beyaz zambağın, onu pürüzsüzce saran soğuk ve tekinsiz zincirlerle kurduğu kontrast; projenin özündeki tutsaklık, izolasyon ve içsel çatışma hissini tipografik bir asimetriyle doğrudan dışarı aktarıyor.</p>
+                    <p>Görsel kompozisyonda derin monokrom siyahlar, dumanlı dokular ve karanlık akademi estetiğinden beslenen dumanlı bir arka plan tercih edildi. Odak noktasındaki distopik cam kürenin yarattığı optik kırılmalar og ışık yansımaları tasarıma mistik bir derinlik katarken, hiyerarşide kullanılan şampanya gümüşü ve platin tonları genel karanlığın içinde asil bir kontrast yaratıyor. Tüm bu doku ve ışık-gölge oyunları, eserin ruhunu modern ve premium bir editoryal yayın tasarımı vizyonuyla buluşturuyor.</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="project-visuals-side">
+            <img src="beyaz-golgeler/bg-01.jpg" alt="Beyaz Gölgeler Tam Kapak" class="showcase-img img-wide">
+            <img src="beyaz-golgeler/bg-02.jpg" alt="Kapak Detay Sahneleri" class="showcase-img img-focus">
+        </main>
+
+    </div>
+
+    <section class="full-width-visuals">
+        <img src="beyaz-golgeler/bg-03.jpg" alt="Kitap Mockup Üst Görünüm" class="showcase-img img-centered">
+        <img src="beyaz-golgeler/bg-04.jpg" alt="İç Sayfalar ve Sırt Detayı" class="showcase-img img-centered">
+    </section>
+
+    <script>
+        const starField = document.getElementById('starField');
+        const starCount = 45; 
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            const size = Math.random() * 2 + 1; 
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.animationDuration = Math.random() * 7 + 6 + 's'; 
+            starField.appendChild(star);
+        }
+    </script>
+
+</body>
+</html>

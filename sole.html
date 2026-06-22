@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLE | Kurumsal Kimlik Kılavuzu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sole-beige: #e5ddcf;
+            --sole-dark: #0a0a0c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; cursor: none !important; }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+        
+        body { 
+            background: linear-gradient(135deg, #111114 0%, #08080a 50%, #151518 100%);
+            color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; 
+        }
+        a, button, .interactive { cursor: none !important; }
+
+        /* KURSÖR */
+        .custom-cursor { width: 5px; height: 5px; background: var(--sole-beige); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px var(--sole-beige), 0 0 20px rgba(229, 221, 207, 0.5); transition: width 0.2s, height 0.2s; will-change: transform; }
+        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: var(--sole-beige); filter: drop-shadow(0 0 6px rgba(229, 221, 207, 0.4)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
+        .cursor-follower svg { width: 100%; height: 100%; }
+        @keyframes starPulse { 0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); } }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(8, 8, 10, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); }
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -1.2px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo::before { content: ''; width: 4px; height: 4px; background: var(--sole-beige); border-radius: 50%; box-shadow: 0 0 8px var(--sole-beige); }
+        .nav-links { display: flex; gap: 60px; }
+        .nav-item { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); text-decoration: none; position: relative; padding: 5px 0; transition: color 0.3s ease; }
+        .nav-item:hover { color: #fff; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; z-index: 1002; }
+        .hamburger span { width: 30px; height: 2px; background: #fff; transition: 0.4s; border-radius: 2px; }
+
+        /* HEADER: SOLE LOGOSU */
+        .project-header { width: 100%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 10; padding-top: 120px; padding-bottom: 40px; }
+        .project-header-logo { max-width: 250px; width: 80%; margin-bottom: 30px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4)); animation: floatLogo 6s ease-in-out infinite; }
+        @keyframes floatLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .project-subtitle { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; color: #a3aab5; letter-spacing: 6px; text-transform: uppercase; }
+
+        /* SCROLL ANİMASYONU */
+        .reveal-on-scroll { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        /* KILAVUZ İÇERİK BÖLÜMÜ */
+        .manual-section { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+        
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--sole-beige); text-align: center; margin-bottom: 60px; letter-spacing: 2px; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 40px; height: 1px; background: var(--sole-beige); opacity: 0.5; }
+
+        /* LOGO HİKAYESİ */
+        .story-container { background: rgba(20, 20, 22, 0.4); border: 1px solid rgba(255,255,255,0.03); border-left: 2px solid var(--sole-beige); padding: 50px; border-radius: 6px; margin-bottom: 80px; }
+        .story-container p { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.9; color: #ccc; margin-bottom: 20px; }
+        .story-container p:last-child { margin-bottom: 0; }
+        .inline-logo { max-width: 150px; display: block; margin: 0 auto 30px auto; opacity: 0.9; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
+
+        /* ======================================================= */
+        /* PROFESYONEL TEKNİK ÇİZİM VE GÜVENLİK ALANI SİSTEMİ      */
+        /* ======================================================= */
+        
+        .blueprint-wrapper {
+            background-color: #0b0b0d;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            position: relative;
+            min-height: 480px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        /* 1. Teknik Çizim & Oranlar (Izgaralı Arka Plan) */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 35px 35px;
+            background-position: center center;
+        }
+
+        .blueprint-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: rgba(229, 221, 207, 0.6);
+            text-transform: uppercase;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+        }
+
+        .blueprint-logo { max-width: 240px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.8)); position: relative; z-index: 1; }
+
+        /* X Eksen Ölçüsü (Yatay) */
+        .measure-line-x { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); width: 240px; height: 1px; background: rgba(229, 221, 207, 0.4); display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+        .measure-line-x::before, .measure-line-x::after { content: ''; width: 1px; height: 12px; background: rgba(229, 221, 207, 0.8); }
+        .measure-text-x { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--sole-beige); letter-spacing: 2px; }
+
+        /* Y Eksen Ölçüsü (Dikey) */
+        .measure-line-y { position: absolute; left: 60px; top: 50%; transform: translateY(-50%); height: 160px; width: 1px; background: rgba(229, 221, 207, 0.4); display: flex; flex-direction: column; justify-content: space-between; align-items: center; z-index: 2; }
+        .measure-line-y::before, .measure-line-y::after { content: ''; height: 1px; width: 12px; background: rgba(229, 221, 207, 0.8); }
+        .measure-text-y { position: absolute; left: -10px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--sole-beige); letter-spacing: 2px; white-space: nowrap; }
+
+        /* 2. Minimum Boyut & Güvenlik Alanı (Dashed Box) */
+        .clearspace-box { position: relative; padding: 50px 70px; border: 1px dashed rgba(229, 221, 207, 0.5); display: inline-flex; justify-content: center; align-items: center; z-index: 2; }
+        .clearspace-corner { position: absolute; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--sole-beige); }
+        .corner-tl { top: -25px; left: -25px; } 
+        .corner-tr { top: -25px; right: -25px; }
+        .corner-bl { bottom: -25px; left: -25px; } 
+        .corner-br { bottom: -25px; right: -25px; }
+
+
+        /* RENK PALETİ */
+        .color-palette-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 80px; }
+        .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .color-circle { width: 80px; height: 80px; border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s; }
+        .color-swatch:hover .color-circle { transform: scale(1.1); }
+        .color-hex { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: #888; text-transform: uppercase; }
+
+        /* TİPOGRAFİ */
+        .typography-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 100px; }
+        .typo-box { background: rgba(20, 20, 22, 0.4); padding: 40px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.02); }
+        .font-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--sole-beige); margin-bottom: 10px; }
+        .font-desc { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; line-height: 1.8; color: #999; margin-bottom: 30px; }
+        .font-sample { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #ddd; line-height: 1.6; letter-spacing: 1px; }
+        .font-sample span { display: block; font-size: 0.65rem; color: #666; margin-bottom: 5px; margin-top: 15px; letter-spacing: 2px; }
+
+        /* ======================================================= */
+        /* MOCKUP GALERİSİ (BOYUTLARI SINIRLANDIRILMIŞ VE ORTALANMIŞ) */
+        /* ======================================================= */
+        .mockup-gallery { max-width: 1100px; margin: 0 auto; padding: 0 40px 100px 40px; display: flex; flex-direction: column; gap: 100px; align-items: center; }
+        
+        .mockup-item { width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; }
+        .mockup-label { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 4px; color: var(--sole-beige); text-transform: uppercase; margin-bottom: 20px; display: block; text-align: center; }
+        
+        /* Büyük ekranlarda devasa durmaması için max-width eklendi */
+        .mockup-img { width: 100%; max-width: 850px; height: auto; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); transition: transform 0.5s ease; border: 1px solid rgba(255,255,255,0.02); }
+        .mockup-img:hover { transform: scale(1.02); }
+        
+        /* 2'li grid de ekranı patlatmasın diye ortalandı */
+        .mockup-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 900px; }
+        .mockup-grid-2 .mockup-img { height: 100%; object-fit: cover; }
+
+        @media (max-width: 992px) {
+            .navbar { padding: 20px 30px; }
+            .hamburger { display: flex; cursor: pointer; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(10, 10, 12, 0.98); flex-direction: column; justify-content: center; align-items: center; gap: 40px; transition: right 0.4s; z-index: 1001; }
+            .nav-links.active { right: 0; }
+            .typography-container, .mockup-grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            .manual-section, .mockup-gallery { padding: 40px 20px; }
+            
+            /* Blueprint Mobilde Küçülmeli */
+            .blueprint-wrapper { padding: 40px 20px; min-height: 350px; }
+            .blueprint-logo { max-width: 160px; }
+            .blueprint-label { top: 20px; left: 20px; font-size: 0.6rem; }
+            .measure-line-x { width: 160px; bottom: 40px; }
+            .measure-line-y { height: 100px; left: 20px; }
+            .clearspace-box { padding: 30px 40px; }
+        }
+
+        /* Dokunmatik Ekran Kursör İptali */
+        @media (pointer: coarse) {
+            .custom-cursor, .cursor-follower { display: none !important; }
+            body, a, button, .interactive { cursor: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="follower"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/></svg></div>
+    
+    <header class="navbar">
+        <a href="index.html" class="logo interactive">meyra.</a>
+        <div class="hamburger interactive" id="hamburger"><span></span><span></span><span></span></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
+            <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
+            <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
+            <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
+        </nav>
+    </header>
+
+    <section class="project-header">
+        <img src="sole/sole-06.png" alt="SOLE Logo" class="project-header-logo interactive">
+        <div class="project-subtitle">KURUMSAL KİMLİK KILAVUZU</div>
+    </section>
+
+    <section class="manual-section">
+        
+        <div class="story-container reveal-on-scroll">
+            <img src="sole/sole-06.png" alt="SOLE" class="inline-logo">
+            <p>SOLE markasının logosu, adından da ilhamla "güneş" kavramını merkezine alır. Markanın baş harfi olan "O" harfi, klasik tipografi yerine stilize bir güneş ikonuyla değiştirilerek, tasarımda hem anlam hem de görsel bir vurgu yaratılmıştır. Güneşin sarı-turuncu gradyen tonları, markanın sıcak, samimi ve ilham verici enerjisini temsil eder[cite: 4].</p>
+            <p>Yazı karakteri olarak tercih edilen "Bumerang - Demo Version", ince yapısı ve zarif çizgileriyle hem modern hem de vintage bir hava sunar. Bu yazı karakteri, markanın moda sektöründeki duruşunu elit ve estetik bir biçimde yansıtır[cite: 4].</p>
+            <p>Renk paletinde kullanılan koyu gri ise güven, istikrar ve doğallık kavramlarını çağrıştırırken; güneş simgesiyle kontrast yaratarak dikkat çekici bir bütünlük oluşturur. SOLE markası, doğadan aldığı ilhamla, yalın ama akılda kalıcı bir görsel kimlik yaratmayı hedefler[cite: 4].</p>
+        </div>
+
+        <h2 class="section-title reveal-on-scroll">Teknik Standartlar</h2>
+        
+        <!-- YENİ: TEKNİK ÇİZİM EKRANI -->
+        <div class="blueprint-wrapper grid-bg reveal-on-scroll">
+            <div class="blueprint-label">Teknik Çizim & Oranlar</div>
+            
+            <div class="measure-line-y"></div>
+            <div class="measure-text-y">90mm</div>
+            
+            <img src="sole/sole-06.png" alt="SOLE Teknik" class="blueprint-logo">
+            
+            <div class="measure-line-x"></div>
+            <div class="measure-text-x">200mm</div>
+        </div>
+
+        <!-- YENİ: GÜVENLİK ALANI EKRANI -->
+        <div class="blueprint-wrapper reveal-on-scroll">
+            <div class="blueprint-label">MİNİMUM BOYUT & GÜVENLİK ALANI</div>
+            
+            <div class="clearspace-box">
+                <div class="clearspace-corner corner-tl">X</div>
+                <div class="clearspace-corner corner-tr">X</div>
+                <div class="clearspace-corner corner-bl">X</div>
+                <div class="clearspace-corner corner-br">X</div>
+                
+                <img src="sole/sole-06.png" alt="SOLE Güvenlik Alanı" class="blueprint-logo">
+            </div>
+        </div>
+
+        <h2 class="section-title reveal-on-scroll">Renk Paleti</h2>
+
+        <div class="color-palette-grid reveal-on-scroll">
+            <div class="color-swatch"><div class="color-circle" style="background-color: #f0a92b;"></div><span class="color-hex">#f0a92b</span></div>
+            <div class="color-swatch"><div class="color-circle" style="background-color: #804000;"></div><span class="color-hex">#804000</span></div>
+            <div class="color-swatch"><div class="color-circle" style="background-color: #67410e;"></div><span class="color-hex">#67410e</span></div>
+            <div class="color-swatch"><div class="color-circle" style="background-color: #d2691e;"></div><span class="color-hex">#d2691e</span></div>
+            <div class="color-swatch"><div class="color-circle" style="background-color: #a0522d;"></div><span class="color-hex">#a0522d</span></div>
+            <div class="color-swatch"><div class="color-circle" style="background-color: #efe7da;"></div><span class="color-hex">#efe7da</span></div>
+        </div>
+
+        <h2 class="section-title reveal-on-scroll" style="margin-top: 100px;">Kurumsal Tipografi</h2>
+
+        <div class="typography-container">
+            <div class="typo-box reveal-on-scroll">
+                <h3 class="font-name" style="font-family: Georgia, serif;">Georgia</h3>
+                <p class="font-desc">1993'te Matthew Carter tarafından tasarlanan Georgia, zarif serif yapısıyla SOLE'ün vintage ruhunu destekler. Okunabilirliği yüksek ve klasik havasıyla markaya güvenilir bir duruş kazandırır[cite: 4].</p>
+                <div class="font-sample">
+                    <span>BOLD / REGULAR / ITALIC</span>
+                    Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+                </div>
+            </div>
+            <div class="typo-box reveal-on-scroll">
+                <h3 class="font-name" style="font-family: sans-serif;">GTVCS</h3>
+                <p class="font-desc">Modern, sade ve güçlü çizgileriyle GTVCS; SOLE'ün çağdaş yüzünü temsil eder. Georgia ile birlikte kullanıldığında dengeli bir kontrast oluşturarak markanın estetik kimliğini tamamlar[cite: 4].</p>
+                <div class="font-sample">
+                    <span>BOLD / REGULAR / ITALIC</span>
+                    Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- KÜÇÜLTÜLMÜŞ MOCKUPLAR GALERİSİ -->
+    <section class="mockup-gallery">
+        
+        <div class="mockup-item reveal-on-scroll">
+            <span class="mockup-label">KARTVİZİT TASARIMI</span>
+            <img src="sole/sole-01.jpg" alt="SOLE Kartvizit Mockup" class="mockup-img interactive">
+        </div>
+
+        <div class="mockup-grid-2">
+            <div class="mockup-item reveal-on-scroll">
+                <span class="mockup-label">KARTON ÇANTA</span>
+                <img src="sole/sole-02.jpg" alt="SOLE Çanta Mockup" class="mockup-img interactive">
+            </div>
+            <div class="mockup-item reveal-on-scroll" style="transition-delay: 0.2s;">
+                <span class="mockup-label">ETİKET</span>
+                <img src="sole/sole-04.jpg" alt="SOLE Etiket Mockup" class="mockup-img interactive">
+            </div>
+        </div>
+
+        <div class="mockup-item reveal-on-scroll">
+            <span class="mockup-label">KUTU AMBALAJ</span>
+            <img src="sole/sole-05.jpg" alt="SOLE Kutu Mockup" class="mockup-img interactive">
+        </div>
+
+        <div class="mockup-item reveal-on-scroll">
+            <span class="mockup-label">DUVAR UYGULAMALARI</span>
+            <img src="sole/sole-03.jpg" alt="SOLE Duvar Logo Mockup" class="mockup-img interactive">
+        </div>
+
+    </section>
+
+    <script>
+        const hamburger = document.getElementById('hamburger'); const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
+
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.15 }); 
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        const cursor = document.getElementById('cursor'); const follower = document.getElementById('follower');
+        let mX = window.innerWidth / 2, mY = window.innerHeight / 2; let fX = mX, fY = mY;
+        document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; cursor.style.left = mX + 'px'; cursor.style.top = mY + 'px'; });
+        function updateFollower() { fX += (mX - fX) * 0.15; fY += (mY - fY) * 0.15; follower.style.left = fX + 'px'; follower.style.top = fY + 'px'; requestAnimationFrame(updateFollower); } updateFollower();
+    </script>
+</body>
+</html>

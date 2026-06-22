@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barutla Vals Serisi | Meyra Özer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* BARUTLA VALS'İN KESKİN FONTU */
+        @font-face {
+            font-family: 'swashingtonCP';
+            src: url('swashingtonCP.ttf') format('truetype'); 
+            font-weight: normal; font-style: normal;
+        }
+
+        :root { --project-glow-color: #4f3754e3; }
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; cursor: none !important; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #080808; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        a, button, .interactive { cursor: none !important; }
+
+        /* KURSÖR SİSTEMİ (Parlak Nokta ve Peşindeki Yıldız) */
+        .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; will-change: transform; }
+        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(226, 171, 177, 0.5)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
+        .cursor-follower svg { width: 100%; height: 100%; }
+        @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(8, 8, 8, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -1.2px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo::before { content: ''; width: 4px; height: 4px; background: #e2abb1; border-radius: 50%; box-shadow: 0 0 8px #e2abb1; }
+        .nav-links { display: flex; gap: 60px; }
+        .nav-item { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); text-decoration: none; position: relative; padding: 5px 0; transition: color 0.3s ease; }
+        .nav-item:hover { color: #fff; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; z-index: 1002; }
+        .hamburger span { width: 30px; height: 2px; background: #fff; transition: 0.4s; border-radius: 2px; }
+
+        /* SOĞUK AMBİANS VE UÇUŞAN YILDIZLAR */
+        .project-bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 1000px; height: 1000px; background: radial-gradient(circle, var(--project-glow-color) 0%, transparent 75%); filter: blur(140px); z-index: -2; pointer-events: none; opacity: 0.5; animation: pulseGlow 8s ease-in-out infinite alternate; will-change: transform, opacity; }
+        @keyframes pulseGlow { 0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); } 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); } }
+        .star-field { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -3; overflow: hidden; }
+        .star { position: absolute; background-color: rgba(220, 225, 235, 0.75); border-radius: 50%; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(220, 225, 235, 0.3); animation: flyAndTwinkle linear infinite; will-change: transform, opacity; }
+        @keyframes flyAndTwinkle { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
+
+        /* SERİ SEÇİM EKRANI */
+        .series-container { max-width: 1400px; margin: 0 auto; padding: 180px 50px 100px 50px; text-align: center; position: relative; z-index: 10; }
+        
+        /* GERİ DÖN BUTONU */
+        .back-btn-wrapper { text-align: left; margin-bottom: 40px; padding-left: 20px; }
+        .back-btn { color: #a3aab5; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; display: inline-block; transition: color 0.3s; text-transform: uppercase; }
+        .back-btn:hover { color: #fff; }
+
+        /* BİREBİR AYNI METALİK BAŞLIK (swashingtonCP) */
+        .series-title { 
+            font-family: 'swashingtonCP', sans-serif !important; 
+            font-size: 4.8rem !important; 
+            line-height: 1.2 !important;   
+            margin-bottom: 30px !important;
+            letter-spacing: 1px !important;
+            font-weight: 400 !important; 
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.95)) !important;
+        }
+        .series-title span {
+            display: inline-block !important; 
+            background: linear-gradient(135deg, #ffffff 0%, #7b7e83 25%, #ffffff 45%, #666a73 65%, #cbd1db 80%, #333840 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            margin-right: 12px !important;
+        }
+        
+        .series-desc { max-width: 800px; margin: 0 auto 80px auto; color: #a3aab5; font-size: 0.95rem; line-height: 1.8; font-weight: 400; }
+        
+        .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+        .book-card { text-decoration: none; display: flex; flex-direction: column; align-items: center; }
+        .book-cover { width: 100%; aspect-ratio: 2/3; background: #07070a; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); transition: transform 0.5s, border-color 0.5s, box-shadow 0.5s; object-fit: cover; margin-bottom: 25px; }
+        .book-card:hover .book-cover { transform: translateY(-10px) scale(1.02); border-color: rgba(203, 209, 219, 0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        .book-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: #fff; letter-spacing: 2px; margin-bottom: 8px; transition: color 0.3s; }
+        .book-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #7a828e; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;}
+        .book-card:hover .book-title { color: #cbd1db; }
+
+        @media (max-width: 992px) {
+            .books-grid { grid-template-columns: 1fr; gap: 60px; }
+            .series-title { font-size: 3rem !important; }
+            .navbar { padding: 20px 30px; }
+            .hamburger { display: flex; cursor: pointer; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(8, 8, 8, 0.98); flex-direction: column; justify-content: center; align-items: center; gap: 40px; transition: right 0.4s; z-index: 1001; }
+            .nav-links.active { right: 0; }
+            .back-btn-wrapper { text-align: center; padding-left: 0; }
+        }
+
+        /* Dokunmatik Ekranlarda Kursörü Gizle */
+        @media (pointer: coarse) {
+            .custom-cursor, .cursor-follower { display: none !important; }
+            body, a, button, .interactive { cursor: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="follower"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/></svg></div>
+    
+    <div class="star-field" id="starField"></div>
+    <div class="project-bg-glow" id="glowLight"></div>
+
+    <header class="navbar">
+        <a href="index.html" class="logo interactive">meyra.</a>
+        <div class="hamburger interactive" id="hamburger"><span></span><span></span><span></span></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
+            <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
+            <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
+            <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
+        </nav>
+    </header>
+
+    <main class="series-container">
+        
+        <div class="back-btn-wrapper">
+            <a href="index.html#calismalar" class="back-btn interactive">← Ana Sayfaya Dön</a>
+        </div>
+
+        <h1 class="series-title"><span>BARUTLA</span> <span>VALS</span> <span>SERISI</span></h1>
+        <p class="series-desc">
+            Bora ve Efil'in etrafında şekillenen bu karanlık ve tutkulu suç/romantizm serisi için hazırlanan kapak tasarımları; hikayenin özündeki tekinsizliği ve estetik gerilimi yansıtıyor. Her bir kitap kapağı, hem kendi içindeki spesifik olay örgüsüyle bütünleşik bir görsel dil sunuyor hem de yan yana geldiklerinde kusursuz bir editoryal harmoni ve koleksiyon algısı oluşturuyor.
+        </p>
+
+        <div class="books-grid">
+            <a href="barutla-vals.html" class="book-card interactive">
+                <img src="barutla-vals-serisi/bv-on-1.jpg" alt="Barutla Vals 1" class="book-cover">
+                <h2 class="book-title">KİTAP I</h2>
+                <span class="book-subtitle">Barutla Vals</span>
+            </a>
+            <a href="barutla-vals-2.html" class="book-card interactive">
+                <img src="barutla-vals-serisi/bv-on-2.jpg" alt="Barutla Vals 2" class="book-cover">
+                <h2 class="book-title">KİTAP II</h2>
+                <span class="book-subtitle">Seri Devamı</span>
+            </a>
+            <a href="barutla-vals-3.html" class="book-card interactive">
+                <img src="barutla-vals-serisi/bv-on-3.jpg" alt="Barutla Vals 3" class="book-cover">
+                <h2 class="book-title">KİTAP III</h2>
+                <span class="book-subtitle">Final Kitabı</span>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // Mobil Menü
+        const hamburger = document.getElementById('hamburger'); const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
+
+        // Uçuşan Gümüş Yıldızlar
+        const starField = document.getElementById('starField'); const starCount = 45; 
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div'); star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw'; star.style.top = Math.random() * 100 + 'vh';
+            const size = Math.random() * 2 + 1; star.style.width = size + 'px'; star.style.height = size + 'px';
+            star.style.animationDuration = Math.random() * 6 + 5 + 's'; starField.appendChild(star);
+        }
+
+        // Mouse Takip (Nokta ve Yıldız)
+        const cursor = document.getElementById('cursor'); const follower = document.getElementById('follower');
+        const glowLight = document.getElementById('glowLight');
+        let mX = window.innerWidth / 2, mY = window.innerHeight / 2; let fX = mX, fY = mY;
+        
+        document.addEventListener('mousemove', (e) => { 
+            mX = e.clientX; mY = e.clientY; 
+            cursor.style.left = mX + 'px'; cursor.style.top = mY + 'px'; 
+            
+            // Arkadaki Mürdüm Işık hafifçe fareyi takip etsin
+            const moveX = (mX - window.innerWidth / 2); const moveY = (mY - window.innerHeight / 2);
+            glowLight.style.transform = `translate(calc(-50% + ${moveX * 0.1}px), calc(-50% + ${moveY * 0.1}px))`;
+        });
+
+        // Yıldız yumuşakça süzülsün
+        function updateFollower() { fX += (mX - fX) * 0.15; fY += (mY - fY) * 0.15; follower.style.left = fX + 'px'; follower.style.top = fY + 'px'; requestAnimationFrame(updateFollower); } updateFollower();
+    </script>
+</body>
+</html>

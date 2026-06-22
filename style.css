@@ -1,0 +1,504 @@
+/* GLOBAL AYARLAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* TÜM SAYFANIN PREMIUM SCROLLBAR TASARIMI */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    border: 2px solid #050505;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 182, 193, 0.4); /* Toz pembe temaya uyumlu loş hover */
+}
+
+body {
+    background-color: #080808; 
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif; /* Yepyeni Montserrat fontumuz */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    isolation: isolate; /* Işıkları duvarın arkasından öne çıkaran sihirli kod */
+}
+
+/* ------------------- */
+/* HERO (KAPAK) BÖLÜMÜ */
+/* ------------------- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.8; 
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: 2;
+}
+
+/* HERO İÇERİK KABI */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25)); /* Güvenli parlama alanı */
+}
+
+/* GÜNCELLENEN GRAFİKSEL H1 BAŞLIĞI */
+.hero-content h1 {
+    font-family: 'Playfair Display', serif; /* Başlığın o asil tırnaklı kontrastı korunuyor */
+    font-size: 95px;
+    font-weight: 400;
+    letter-spacing: 14px;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    
+    /* Beyazdan parlak gümüş griye keskin degrade */
+    background: linear-gradient(180deg, #ffffff 30%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-content p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #a0a0a0;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+.scroll-indicator {
+    font-size: 11px;
+    color: #e3e3e3;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: floating 2.5s ease-in-out infinite;
+    line-height: 2;
+}
+
+/* ------------------- */
+/* YÜKLENME ANİMASYONLARI (FADE UP) */
+/* ------------------- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeUpAnim {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* ------------------- */
+/* PROJELER GALERİSİ */
+/* ------------------- */
+main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 120px 30px;
+}
+
+.section-header {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #ffffff 50%, #b0b0b0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(106, 27, 154, 0.2), transparent);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px; 
+    backdrop-filter: blur(10px); 
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-img-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #111;
+    transition: transform 0.7s ease;
+}
+
+.project-card:hover .card-img-placeholder {
+    transform: scale(1.05); 
+    background-color: #1a1a1a;
+}
+
+.project-info {
+    padding: 25px;
+    position: relative;
+    background: linear-gradient(0deg, #0f0f0f 0%, transparent 100%);
+    margin-top: -50px; 
+}
+
+.project-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.project-info p {
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 1.5px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    text-align: center;
+    padding: 80px 20px;
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 2px;
+    background: linear-gradient(0deg, #050505 0%, #080808 100%);
+}
+
+footer p {
+    margin-bottom: 12px;
+}
+
+/* ------------------- */
+/* SLIDER (KAYDIRMALI GALERİ) */
+/* ------------------- */
+.project-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding: 20px 0;
+}
+
+.project-slider::-webkit-scrollbar {
+    height: 6px; 
+}
+
+.project-slider::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 10px;
+}
+
+.project-slider::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+}
+
+.project-slider img {
+    height: 500px;
+    object-fit: contain;
+    scroll-snap-align: center;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.card-img-real {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; 
+    transition: transform 0.7s ease;
+    display: block; 
+}
+
+.project-card:hover .card-img-real {
+    transform: scale(1.05);
+}
+
+/* --- KUSURSUZ NAVBAR TASARIMI --- */
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.4); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    z-index: 1000; 
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.navbar .logo {
+    font-family: 'Keep Calm', serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.navbar .nav-links a {
+    color: #a0a0a0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #fff; 
+}
+
+/* EKRAN KÜÇÜLDÜĞÜNDE DEVREYE GİRECEK KODLAR */
+@media (max-width: 768px) {
+    nav, .navbar, header {
+        flex-direction: column !important;
+        gap: 15px;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+    }
+    
+    h2, h3 {
+        font-size: 1.8rem !important;
+    }
+    
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    .container, section, main {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+/* =================================================== */
+/* SOFT TOZ PEMBE NEBULA IŞIKLARI (YENİ VE HIZLI)       */
+/* =================================================== */
+.ambient-blob {
+    position: fixed;
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1; 
+    filter: blur(150px);
+    mix-blend-mode: screen;
+    opacity: 0.22;
+    animation: floatNebula 12s ease-in-out infinite alternate;
+}
+
+.blob-1 {
+    top: -25%;
+    left: -20%;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.6) 0%, rgba(244, 143, 177, 0.2) 50%, transparent 70%);
+    animation-duration: 9s;
+}
+
+.blob-2 {
+    top: 20%;
+    right: -20%;
+    background: radial-gradient(circle, rgba(224, 176, 255, 0.5) 0%, rgba(255, 192, 203, 0.15) 50%, transparent 70%);
+    animation-duration: 14s;
+    animation-delay: -3s;
+}
+
+.blob-3 {
+    bottom: -25%;
+    left: -15%;
+    background: radial-gradient(circle, rgba(219, 112, 147, 0.5) 0%, rgba(244, 143, 177, 0.1) 50%, transparent 70%);
+    animation-duration: 11s;
+}
+
+@keyframes floatNebula {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    50% { transform: translate(100px, 60px) scale(1.15) rotate(120deg); }
+    100% { transform: translate(-50px, 100px) scale(0.95) rotate(240deg); }
+}
+
+/* TOZ PEMBE PREMIUM HOVER EFEKTİ */
+.project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(255, 182, 193, 0.4);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(255, 182, 193, 0.15);
+}
+
+/* =================================================== */
+/* KOZMİK GÖKYÜZÜ VE UÇUŞAN YILDIZLAR TASARIMI          */
+/* =================================================== */
+.star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(138, 43, 226, 0.4);
+    animation: flyAndTwinkle linear infinite;
+}
+
+@keyframes flyAndTwinkle {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}/* ÇALIŞMALAR İÇİN YEPYENİ EPİK AKIŞ */
+.works-editorial-list {
+    width: 100%;
+    margin-top: 100px;
+    padding-bottom: 200px;
+}
+
+.editorial-work-item {
+    width: 100%;
+    padding: 120px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.6s ease;
+    text-decoration: none;
+}
+
+.editorial-work-item:hover {
+    padding-left: 50px;
+}
+
+.work-text-block { z-index: 2; }
+
+.work-big-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #fff;
+    transition: color 0.4s ease;
+}
+
+.work-category-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #bfa0a4;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Farenin altına gelen 'Ghost' Görsel Efekti */
+.work-hover-img {
+    position: fixed;
+    width: 450px;
+    height: 600px;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    filter: grayscale(30%) contrast(1.1);
+}
+
+.editorial-work-item:hover .work-big-title { color: #e2abb1; }
+.editorial-work-item:hover ~ .work-hover-img { opacity: 1; transform: translateY(-50%) scale(1); }
