@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
+<!-- 
+    Designed, Coded and Curated by Meyra Özer.
+    Visual Communication Design ©2026
+    "Seeking the fragile balance between danger and elegance."
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +19,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: #030305; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* PARIL PARIL PARLAYAN BEYAZ ÇEKİRDEK KURSÖR */
+        /* PARIL PARLAYAN BEYAZ ÇEKİRDEK KURSÖR */
         .custom-cursor { 
             width: 5px; height: 5px; background: #fff; border-radius: 50%; 
             position: fixed; transform: translate(-50%, -50%); pointer-events: none; 
@@ -56,7 +61,7 @@
         .nav-item:hover { color: #fff; }
         .nav-item:hover::after { transform: scaleX(1); transform-origin: left; }
 
-        /* HERO SECTİON */
+        /* HERO SECTION */
         .hero-section { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
         .hero-meta-badge { font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #bfa0a4; margin-bottom: 40px; font-weight: 700; }
         
@@ -65,7 +70,6 @@
             background: linear-gradient(135deg, #ffffff 0%, #f7e1e3 30%, #a39294 65%, #ffffff 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); 
         }
         
-        /* REVIZYON: Renk bfa0a4 olarak eşitlendi */
         .hero-title-sub { 
             font-family: 'Montserrat', sans-serif !important; font-weight: 500 !important; font-size: 0.85rem !important; letter-spacing: 6px !important; text-transform: uppercase !important; 
             color: #bfa0a4 !important; margin-top: 20px !important; display: block; 
@@ -82,13 +86,57 @@
         .section-header-title { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom: 60px; display: flex; align-items: center; gap: 20px; }
         .section-header-title::after { content: ''; flex: 1; height: 1px; background: rgba(226, 171, 177, 0.08); }
 
+        /* YENİ: KÜRATÖR MANİFESTOSU STİLLERİ EKLENDİ */
+        .curator-manifesto { 
+            margin-top: -30px; 
+            margin-bottom: 60px; 
+            max-width: 700px; 
+            padding-left: 25px; 
+            border-left: 2px solid rgba(226, 171, 177, 0.3); 
+            animation: fadeIn 2s ease forwards;
+        }
+        .curator-manifesto p { 
+            font-family: 'Montserrat', serif; 
+            font-size: 0.9rem; 
+            font-style: bold; 
+            color: rgba(255, 255, 255, 0.778); 
+            line-height: 1.7; 
+            letter-spacing: 0.5px;
+        }
+        .curator-manifesto span { 
+            font-family: 'Syne', sans-serif; 
+            font-size: 0.75rem; 
+            font-style: normal; 
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #fff; 
+            border-bottom: 1px solid #e2abb1; 
+            padding-bottom: 2px; 
+        }
+
         .works-showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px 40px; }
         .work-card { text-decoration: none; color: #fff; display: flex; flex-direction: column; }
-        .work-img-frame { width: 100%; height: 460px; background: #07070a; border: 1px solid rgba(226, 171, 177, 0.03); border-radius: 5px; overflow: hidden; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transition: border-color 0.4s; }
-        .work-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1); }
+        .work-img-frame { 
+            width: 100%; 
+            aspect-ratio: 920 / 840; 
+            background: #07070a; 
+            border: 1px solid rgba(226, 171, 177, 0.03); 
+            border-radius: 5px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+            transition: border-color 0.4s; 
+        }
+        .work-img-frame img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1); 
+        }
         .work-img-fallback-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: rgba(255,255,255,0.06); z-index: 1; pointer-events: none; }
         .work-card:hover .work-img-frame { border-color: rgba(226, 171, 177, 0.25); }
-        .work-card:hover .work-img-frame img { transform: scale(1.03); }
+        .work-card:hover .work-img-frame img { transform: scale(1.02); }
         .work-info-meta { margin-top: 20px; display: flex; justify-content: space-between; align-items: baseline; }
         .work-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.5px; }
         .work-type { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: rgba(226, 171, 177, 0.4); letter-spacing: 1px; text-transform: uppercase; }
@@ -102,27 +150,70 @@
         .info-block-item h4 { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(226, 171, 177, 0.4); margin-bottom: 8px; }
         .info-block-item p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 500; color: rgba(255, 255, 255, 0.6); line-height: 1.6; }
 
-        /* İLETİŞİM ALANI */
-        .puzzle-contact-card { background: rgba(10, 10, 14, 0.35); border: 1px solid rgba(255, 255, 255, 0.01); border-radius: 8px; padding: 40px; }
-        .contact-puzzle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .puzzle-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; border-radius: 6px; background: rgba(255, 255, 255, 0.005); border: 1px solid rgba(226, 171, 177, 0.06); transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+        /* PREMIUM İLETİŞİM ALANI VE FORMU */
+        .contact-layout { display: flex; gap: 40px; align-items: stretch; }
+        .contact-info-side { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+        
+        .puzzle-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; border-radius: 6px; background: rgba(255, 255, 255, 0.005); border: 1px solid rgba(226, 171, 177, 0.06); transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s; height: 100%; justify-content: center; }
         .puzzle-item:hover { background: rgba(226, 171, 177, 0.01); border-color: rgba(226, 171, 177, 0.4); box-shadow: 0 0 15px rgba(226, 171, 177, 0.05); transform: translateY(-2px); }
         .puzzle-label { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.25); margin-bottom: 12px; }
         .puzzle-link { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 500; color: rgba(255, 255, 255, 0.85); text-decoration: none; transition: color 0.3s; }
         .puzzle-item:hover .puzzle-link { color: #fff; }
 
-        /* RESPONSIVE */
+        .contact-form-side { flex: 1.8; background: rgba(10, 10, 14, 0.65); border: 1px solid rgba(255, 255, 255, 0.02); border-top: 3px solid #e2abb1; border-radius: 8px; padding: 50px; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); }
+        
+        .form-header-premium { margin-bottom: 40px; }
+        .form-premium-subtitle { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 5px; color: #bfa0a4; text-transform: uppercase; display: block; margin-bottom: 12px; }
+        .form-premium-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; font-style: italic; color: #fff; letter-spacing: 1px; }
+
+        .editorial-form { display: flex; flex-direction: column; gap: 35px; }
+        .form-group { position: relative; }
+        
+        .editorial-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; padding: 12px 0; outline: none; transition: all 0.4s ease; }
+        .editorial-input:focus { border-bottom-color: #e2abb1; box-shadow: 0 10px 20px -10px rgba(226, 171, 177, 0.2); }
+        .editorial-input::placeholder { color: rgba(255, 255, 255, 0.3); font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 500; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+        
+        textarea.editorial-input { resize: none; height: 120px; }
+
+        .submit-btn { align-self: flex-start; font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: #fff; background: rgba(226, 171, 177, 0.15); border: 1px solid rgba(226, 171, 177, 0.3); padding: 15px 40px; border-radius: 30px; cursor: pointer; transition: all 0.4s; }
+        .submit-btn:hover { background: rgba(226, 171, 177, 0.3); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(226, 171, 177, 0.1); }
+
+        /* YENİ: PREMIUM FOOTER STİLLERİ */
+        .premium-footer {
+            padding: 40px 80px; 
+            text-align: center; 
+            border-top: 1px solid rgba(255,255,255,0.02); 
+            margin-top: 100px; 
+            z-index: 10; 
+            position: relative;
+        }
+        .premium-footer p {
+            font-family: 'Syne', sans-serif; 
+            font-size: 0.65rem; 
+            letter-spacing: 3px; 
+            color: rgba(255,255,255,0.3); 
+            text-transform: uppercase;
+        }
+        .premium-footer span {
+            color: #e2abb1; 
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE AYARLARI */
         @media (max-width: 1200px) {
             .works-showcase-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-puzzle-grid { grid-template-columns: 1fr; gap: 15px; }
             .editorial-about-card { flex-direction: column; gap: 40px; }
             .about-info-grid { grid-template-columns: 1fr; border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 30px; width: 100%; }
+            .contact-layout { flex-direction: column; }
         }
         @media (max-width: 992px) {
-            .navbar { padding: 30px 40px; }
+            .section-container { padding: 80px 24px; }
+            .navbar { padding: 30px 24px; }
             .hero-title-main { font-size: 4.5rem; }
             .works-showcase-grid { grid-template-columns: 1fr; gap: 45px; }
             .custom-cursor { display: none; }
+            .contact-form-side { padding: 30px; }
+            .premium-footer { padding: 30px 24px; }
         }
     </style>
 </head>
@@ -166,12 +257,18 @@
 
     <section class="section-container" id="calismalar">
         <h3 class="section-header-title">Seçilmiş Çalışmalar</h3>
+
+        <!-- YENİ EKLENEN MANİFESTO (PROLOGUE) -->
+        <div class="curator-manifesto">
+            <p>İçinde bulunduğunuz bu dijital arayüz; sıradan bir galeri değil, her bir pikselini bizzat tasarlayıp kodladığım bütünsel bir deneyim alanıdır.</p>
+        </div>
+
         <div class="works-showcase-grid">
             
             <a href="msu.html" class="work-card interactive">
                 <div class="work-img-frame">
                     <span class="work-img-fallback-text">msu</span>
-                    <img src="msu/msu-01.jpg" alt="Mavinin Son Uykusu">
+                    <img src="msu/msu-index.jpg" alt="Mavinin Son Uykusu">
                 </div>
                 <div class="work-info-meta">
                     <span class="work-name">Mavinin Son Uykusu</span>
@@ -182,7 +279,7 @@
             <a href="beyaz-golgeler.html" class="work-card interactive">
                 <div class="work-img-frame">
                     <span class="work-img-fallback-text">bg</span>
-                    <img src="beyaz-golgeler/bg-01.jpg" alt="Beyaz Gölgeler">
+                    <img src="beyaz-golgeler/bg-index.jpg" alt="Beyaz Gölgeler">
                 </div>
                 <div class="work-info-meta">
                     <span class="work-name">Beyaz Gölgeler</span>
@@ -190,10 +287,10 @@
                 </div>
             </a>
 
-            <a href="barutla-vals-serisi.html">
+            <a href="barutla-vals-serisi.html" class="work-card interactive">
                 <div class="work-img-frame">
                     <span class="work-img-fallback-text">bv</span>
-                    <img src="barutla-vals/bv-01.jpg" alt="Barutla Vals">
+                    <img src="barutla-vals-serisi/bv-index.jpg" alt="Barutla Vals">
                 </div>
                 <div class="work-info-meta">
                     <span class="work-name">Barutla Vals</span>
@@ -202,20 +299,20 @@
             </a>
 
              <a href="noctis.html" class="work-card interactive">
-    <div class="work-img-frame">
-        <span class="work-img-fallback-text">noctis</span>
-        <img src="noctis/noctis01.png" alt="Noctis Menü Tasarımı">
-    </div>
-    <div class="work-info-meta">
-        <span class="work-name">Noctis</span>
-        <span class="work-type">Editoryal Menü Tasarımı</span>
-    </div>
-</a>
+                <div class="work-img-frame">
+                    <span class="work-img-fallback-text">noctis</span>
+                    <img src="noctis/noctis-index.jpg" alt="Noctis Menü Tasarımı">
+                </div>
+                <div class="work-info-meta">
+                    <span class="work-name">Noctis</span>
+                    <span class="work-type">Editoryal Menü Tasarımı</span>
+                </div>
+            </a>
 
- <a href="sole.html" class="work-card interactive">
+            <a href="sole.html" class="work-card interactive">
                 <div class="work-img-frame">
                     <span class="work-img-fallback-text">sole</span>
-                    <img src="sole/sole-01.jpg" alt="Sole">
+                    <img src="sole/sole-index.jpg" alt="Sole">
                 </div>
                 <div class="work-info-meta">
                     <span class="work-name">Sole</span>
@@ -226,7 +323,7 @@
             <a href="oblivion.html" class="work-card interactive">
                 <div class="work-img-frame">
                     <span class="work-img-fallback-text">oblivion</span>
-                    <img src="oblivion/oblivion-01.jpg" alt="Oblivion">
+                    <img src="oblivion/oblivion-index.jpg" alt="Oblivion">
                 </div>
                 <div class="work-info-meta">
                     <span class="work-name">Oblivion</span>
@@ -244,7 +341,6 @@
                     <span class="work-type">Ambalaj Tasarımı</span>
                 </div>
             </a>
-           
 
         </div>
     </section>
@@ -252,8 +348,9 @@
     <section class="section-container" id="hakkimda">
         <h3 class="section-header-title">Hakkımda</h3>
         <div class="editorial-about-card">
+            <!-- YENİ: HAKKIMDA METNİ EDİTORYAL DOKUNUŞ İLE GÜNCELLENDİ -->
             <div class="about-text-side">
-                İstanbul'da yaşayan bir <span>Görsel İletişim Tasarımı</span> öğrencisiyim. Tipografi, karanlık estetik konseptler ve dijital yayıncılık üzerine yoğunlaşarak, kelimelerin ruhunu sinematik kapak tasarımlarına dönüştürüyorum. Tasarımlarımda <span>tehlike ile zarafetin</span> kırılgan dengesini aramayı seviyorum.
+                İstanbul'da yaşayan bir <span>Görsel İletişim Tasarımı</span> öğrencisiyim. Tipografi, estetik konseptler ve dijital yayıncılık üzerine yoğunlaşarak tasarımlar yaratıyorum. Dijital alanları editoryal birer yayın organı olarak görüyor; bu doğrultuda kendi portfolyo alanım da dahil olmak üzere tüm arayüzleri <span>bizzat tasarlayıp kodlarla inşa ediyorum.</span>
             </div>
             <div class="about-info-grid">
                 <div class="info-block-item">
@@ -261,16 +358,8 @@
                     <p>İstanbul Yeni Yüzyıl Üniversitesi<br>Görsel İletişim Tasarımı (3. Sınıf)</p>
                 </div>
                 <div class="info-block-item">
-                    <h4>Odak Alanları</h4>
-                    <p>Yayın Tasarımı, Tipografi, Konsept Tasarımı, Marka Kimliği</p>
-                </div>
-                <div class="info-block-item">
                     <h4>Tasarım Araçları</h4>
-                    <p>Photoshop, Illustrator, Figma, After Effects, Blender</p>
-                </div>
-                <div class="info-block-item">
-                    <h4>Disiplin</h4>
-                    <p>Karanlık Akademi Estetiği, Karanlık & Fantastik Kurgu Sembolizmi</p>
+                    <p>Photoshop, Illustrator, Premiere Pro, InDesign, Figma, After Effects, Blender</p>
                 </div>
             </div>
         </div>
@@ -278,16 +367,16 @@
 
     <section class="section-container" id="iletisim">
         <h3 class="section-header-title">Bağlantı Kur</h3>
-        <div class="puzzle-contact-card">
-            <div class="contact-puzzle-grid">
-                
+        
+        <div class="contact-layout">
+            <div class="contact-info-side">
                 <div class="puzzle-item">
-                    <span class="puzzle-label">Direct Inquiry</span>
+                    <span class="puzzle-label">DIRECT INQUIRY</span>
                     <a href="mailto:meyyrazer@gmail.com" class="puzzle-link interactive">meyyrazer@gmail.com</a>
                 </div>
 
                 <div class="puzzle-item">
-                    <span class="puzzle-label">Creative Feed</span>
+                    <span class="puzzle-label">CREATIVE FEED</span>
                     <a href="https://instagram.com/mei.visions" target="_blank" class="puzzle-link interactive">@mei.visions</a>
                 </div>
 
@@ -295,10 +384,42 @@
                     <span class="puzzle-label">Personal Feed</span>
                     <a href="https://instagram.com/meyrazer" target="_blank" class="puzzle-link interactive">@meyrazer</a>
                 </div>
+            </div>
 
+            <div class="contact-form-side">
+                <div class="form-header-premium">
+                    <span class="form-premium-subtitle">İLETİŞİM FORMU</span>
+                </div>
+
+                <form action="https://formsubmit.co/meyyrazer@gmail.com" method="POST" class="editorial-form">
+                    <input type="hidden" name="_subject" value="Meyraozer.com'dan Yeni Bir Mesaj!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://meyraozer.com/tesekkurler.html">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" class="editorial-input interactive" placeholder="ADINIZ & SOYADINIZ" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" name="email" class="editorial-input interactive" placeholder="E-POSTA ADRESİNİZ" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="message" class="editorial-input interactive" placeholder="MESAJINIZ" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn interactive">GÖNDER ↗</button>
+                </form>
             </div>
         </div>
+        
     </section>
+
+    <!-- YENİ EKLENEN PREMIUM FOOTER İMZASI -->
+    <footer class="premium-footer">
+        <p>DESIGNED, CODED & CURATED WITH DANGER AND ELEGANCE BY <span>Meyra Özer</span> ©2026</p>
+    </footer>
 
     <script>
         const cursor = document.getElementById('cursor');
@@ -314,7 +435,6 @@
         let fX = mouseX;
         let fY = mouseY;
 
-        // CANVAS BOYUTLANDIRMA SİSTEMİ
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -350,7 +470,6 @@
         }
         drawSilkWaves();
 
-        // MOUSE TAKİP VE PARALLAX NEBULA ETKİSİ
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -389,6 +508,13 @@
                 body.classList.remove('clicked');
             }, 300);
         });
+
+        // YENİ EKLENEN GİZLİ YAZILIMCI İMZASI (CONSOLE EASTER EGG)
+        console.log(
+            "%c Designed & Coded by Meyra Özer %c ©2026 ",
+            "background: #e2abb1; color: #030305; padding:5px; font-family: 'Syne', sans-serif; font-weight: bold;",
+            "background: #07070a; color: #fff; padding:5px;"
+        );
     </script>
 </body>
 </html>

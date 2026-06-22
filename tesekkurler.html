@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesaj İletildi | Meyra Özer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        body { background-color: #030305; color: #fff; font-family: 'Montserrat', sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+
+        /* KURSÖR */
+        .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; }
+        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(226, 171, 177, 0.5)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; }
+        .cursor-follower svg { width: 100%; height: 100%; }
+        @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
+
+        /* NEBULA ARKA PLAN */
+        .interactive-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: #030305; pointer-events: none; }
+        .nebula-1 { position: absolute; width: 900px; height: 900px; background: radial-gradient(circle, rgba(226, 171, 177, 0.35) 0%, transparent 75%); border-radius: 50%; filter: blur(110px); left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+        /* İÇERİK */
+        .success-content { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 20px; animation: fadeIn 1.5s ease forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .meta-tag { font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #bfa0a4; font-weight: 700; text-transform: uppercase; }
+        .main-title { font-family: 'Montserrat', serif; font-size: 5rem; font-weight: 300; font-style: Bold; letter-spacing: 2px; color: #ffe3eb; margin-bottom: 10px; }
+        .desc-text { font-family: 'Montserrat', ; font-size: 0.95rem; font-weight: 400; color: rgba(255, 255, 255, 0.6); max-width: 500px; line-height: 1.6; margin-bottom: 40px; }
+
+        .back-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: #fff; background: rgba(226, 171, 177, 0.15); border: 1px solid rgba(226, 171, 177, 0.3); padding: 15px 40px; border-radius: 30px; text-decoration: none; transition: all 0.4s; }
+        .back-btn:hover { background: rgba(226, 171, 177, 0.3); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(226, 171, 177, 0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="follower">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/>
+        </svg>
+    </div>
+
+    <div class="interactive-bg"><div class="nebula-1"></div></div>
+
+    <div class="success-content">
+        <span class="meta-tag">İLETİŞİM FORMU</span>
+        <h1 class="main-title">Mesajınız İletildi</h1>
+        <p class="desc-text">Notunuz elime ulaştı, en kısa sürede size dönüş yapacağım!</p>
+        <a href="index.html" class="back-btn interactive">PORTFOLYOYA GERİ DÖN ↗</a>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cursor'); const follower = document.getElementById('follower');
+        document.addEventListener('mousemove', (e) => { 
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; 
+            follower.style.left = e.clientX + 'px'; follower.style.top = e.clientY + 'px'; 
+        });
+        const interactives = document.querySelectorAll('.interactive');
+        interactives.forEach(item => {
+            item.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            item.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+    </script>
+</body>
+</html>

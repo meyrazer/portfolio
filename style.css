@@ -161,6 +161,35 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
+/* KÜRATÖR MANİFESTOSU (ÇALIŞMALAR ÖNCESİ) */
+        .curator-manifesto { 
+            margin-top: -30px; 
+            margin-bottom: 60px; 
+            max-width: 700px; 
+            padding-left: 25px; 
+            border-left: 2px solid rgba(226, 171, 177, 0.3); 
+            animation: fadeIn 2s ease forwards;
+        }
+        .curator-manifesto p { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 1.3rem; 
+            font-style: italic; 
+            color: rgba(255, 255, 255, 0.65); 
+            line-height: 1.7; 
+            letter-spacing: 0.5px;
+        }
+        .curator-manifesto span { 
+            font-family: 'Syne', sans-serif; 
+            font-size: 0.75rem; 
+            font-style: normal; 
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #fff; 
+            border-bottom: 1px solid #e2abb1; 
+            padding-bottom: 2px; 
+        }
+
 .line {
     flex-grow: 1;
     height: 1px;
