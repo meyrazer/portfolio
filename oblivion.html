@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oblivion | Meyra Özer</title>
+    <link rel="icon" type="image/png" href="m-logo-beyaz.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,7 @@
             --bg-deep-purple: #311e51;
             --bg-vivid-purple: #663086;
             --bg-dark: #040406;
+            --sole-beige: #e5ddcf; /* Toast uyumu için */
         }
 
         body { padding: 0 !important; background-color: var(--bg-dark); font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
@@ -25,29 +27,43 @@
 
         /* KURSÖR */
         .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; will-change: transform; }
-        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(226, 171, 177, 0.5)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
+        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(102, 48, 134, 0.7)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
         .cursor-follower svg { width: 100%; height: 100%; }
         @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
 
-        /* NAVBAR */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(4, 4, 6, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
-        .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -1.2px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo::before { content: ''; width: 4px; height: 4px; background: #e2abb1; border-radius: 50%; box-shadow: 0 0 8px #e2abb1; }
+        /* GÜNCEL NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(4, 4, 6, 0.75); border-bottom: 1px solid rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .nav-logo { height: 45px; width: auto; object-fit: contain; display: block; }
+        .nav-links { display: flex; gap: 60px; }
+        .nav-item { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); text-decoration: none; position: relative; padding: 5px 0; transition: color 0.3s ease; }
+        .nav-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: var(--bg-vivid-purple); transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1); }
+        .nav-item:hover { color: #fff; }
+        .nav-item:hover::after { transform: scaleX(1); transform-origin: left; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: #fff; transition: all 0.4s ease; border-radius: 2px; }
 
         /* AURA VE YILDIZLAR */
         .project-bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 1100px; height: 1100px; background: radial-gradient(circle, var(--bg-vivid-purple) 0%, var(--bg-deep-purple) 30%, transparent 70%); filter: blur(150px); z-index: -2; opacity: 0.5; animation: pulseGlow 8s ease-in-out infinite alternate; will-change: opacity, transform; }
         @keyframes pulseGlow { 0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); } 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); } }
         .star-field { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -3; overflow: hidden; }
         .flicker-star { position: absolute; background: #fff; border-radius: 50%; animation: flicker 2s infinite alternate; will-change: opacity, transform; }
-        @keyframes flicker { 0% { opacity: 0.2; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
+        @keyframes flicker { 0% { opacity: 0.1; transform: scale(0.8); } 100% { opacity: 0.8; transform: scale(1.2); } }
+
+        /* SCROLL ANİMASYONU */
+        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
         /* BÖLÜM 1: KÜNYE VE HİKAYE */
-        .case-study-container { max-width: 1400px; margin: 0 auto; padding: 160px 50px 80px 50px; position: relative; z-index: 10; display: flex; gap: 80px; align-items: stretch; }
+        .case-study-container { max-width: 1400px; margin: 0 auto; padding: 160px 50px 80px 50px; position: relative; z-index: 10; display: flex; flex-direction: column; }
+        
+        /* GERİ DÖN BUTONU */
+        .back-btn-wrapper { width: 100%; text-align: left; margin-bottom: 30px; }
+        .back-btn { font-family: 'Montserrat', sans-serif; color: #a3aab5; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; display: inline-block; transition: color 0.3s; text-transform: uppercase; }
+        .back-btn:hover { color: #fff; }
+
+        .case-study-content { display: flex; gap: 80px; align-items: stretch; }
         .project-meta-side { flex: 1; max-width: 450px; }
         .project-story-side { flex: 1.5; display: flex; flex-direction: column; justify-content: center; }
-
-        .back-btn { color: #a3aab5; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; transition: color 0.3s; display: inline-block; margin-bottom: 30px; text-transform: uppercase; }
-        .back-btn:hover { color: #fff; }
 
         .editorial-card { background: rgba(12, 12, 14, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-left: 3px solid var(--bg-vivid-purple); border-radius: 8px; padding: 40px; backdrop-filter: blur(25px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); }
         .editorial-card h1 { font-family: 'Josefin Sans', sans-serif !important; font-weight: 400 !important; font-size: 3.5rem !important; color: #ffffff !important; margin-bottom: 5px; letter-spacing: 2px; }
@@ -55,51 +71,62 @@
 
         .project-spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .spec-item { font-size: 0.85rem; color: #ddd; letter-spacing: 0.5px; font-weight: 500; }
-        .spec-item span { display: block; font-size: 0.65rem; color: var(--bg-vivid-purple); text-transform: uppercase; margin-bottom: 6px; font-weight: 700; letter-spacing: 1.5px; }
+        .spec-item span { display: block; font-size: 0.65rem; color: #a272bd; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; letter-spacing: 1.5px; }
 
         .project-description { font-family: 'Montserrat', sans-serif; color: #ccc; line-height: 1.9; font-size: 1.05rem; font-weight: 400; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
         .project-description p { margin-bottom: 20px; }
 
         /* BÖLÜM 2: DİSTOPIK KLİNİK PROSEDÜR */
-        .clinical-warning-box { background: rgba(102, 48, 134, 0.1); border: 1px dashed var(--bg-vivid-purple); padding: 40px; border-radius: 8px; margin: 40px 50px 80px 50px; max-width: 1300px; margin-left: auto; margin-right: auto; text-align: center; }
-        .clinical-warning-box h3 { font-family: 'Josefin Sans', sans-serif; font-size: 1.2rem; color: #fff; letter-spacing: 3px; margin-bottom: 20px; font-weight: 500; }
-        .clinical-warning-box p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #a3aab5; line-height: 1.8; max-width: 800px; margin: 0 auto; font-style: italic; }
+        .clinical-warning-box { position: relative; overflow: hidden; background: rgba(102, 48, 134, 0.1); border: 1px solid rgba(102, 48, 134, 0.4); padding: 50px; border-radius: 8px; margin: 40px 50px 100px 50px; max-width: 1300px; margin-left: auto; margin-right: auto; text-align: center; box-shadow: inset 0 0 40px rgba(102, 48, 134, 0.1); }
+        .clinical-warning-box::after { content: ''; position: absolute; top: -10px; left: 0; width: 100%; height: 2px; background: rgba(157, 85, 204, 0.8); box-shadow: 0 0 15px rgba(157, 85, 204, 0.8); animation: scanline 4s linear infinite; pointer-events: none; }
+        @keyframes scanline { 0% { top: -10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 110%; opacity: 0; } }
+        
+        .clinical-warning-box h3 { font-family: 'Josefin Sans', sans-serif; font-size: 1.2rem; color: #fff; letter-spacing: 4px; margin-bottom: 20px; font-weight: 500; }
+        .clinical-warning-box p { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #a3aab5; line-height: 1.8; max-width: 800px; margin: 0 auto; font-style: italic; font-weight: 500; }
 
         /* BÖLÜM 3: TASARIM KİMLİĞİ */
-        .design-identity-section { max-width: 1400px; margin: 0 auto 100px auto; padding: 0 50px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: center; }
+        .design-identity-section { max-width: 1400px; margin: 0 auto 120px auto; padding: 0 50px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: center; }
         
-        .color-palette { display: flex; gap: 20px; }
-        .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .color-circle { width: 70px; height: 70px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
-        .color-hex { font-size: 0.7rem; color: #888; letter-spacing: 2px; }
+        /* RENK PALETİ VE KOPYALAMA */
+        .palette-wrapper { text-align: left; }
+        .color-palette { display: flex; gap: 25px; margin-top: 25px; flex-wrap: wrap; }
+        .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 15px; transition: transform 0.3s; }
+        .color-circle { width: 75px; height: 75px; border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; position: relative; overflow: hidden; }
+        .color-circle::after { content: 'KOPYALA'; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 1px; font-weight: 700; opacity: 0; transition: opacity 0.3s; }
+        .color-swatch:hover { transform: translateY(-5px); }
+        .color-swatch:hover .color-circle::after { opacity: 1; }
+        .color-swatch:hover .color-circle { border-color: rgba(255,255,255,0.4); }
+        .color-hex { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #888; letter-spacing: 2px; text-transform: uppercase; }
 
-        .typography-showcase { background: rgba(12, 12, 14, 0.4); border: 1px solid rgba(255,255,255,0.03); padding: 40px; border-radius: 8px; }
-        .typography-showcase h4 { font-family: 'Josefin Sans', sans-serif; font-size: 2.2rem; font-weight: 400; margin-bottom: 10px; color: #fff; }
-        .typography-showcase p { font-size: 0.8rem; color: #888; line-height: 1.6; letter-spacing: 1px; margin-bottom: 20px; }
-        .typography-showcase .alphabet { font-family: 'Josefin Sans', sans-serif; font-size: 1.1rem; color: #ccc; letter-spacing: 2px; word-break: break-all; }
+        /* TOAST BİLDİRİMİ */
+        #toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 12px 24px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; transition: bottom 0.4s cubic-bezier(0.2, 1, 0.2, 1); z-index: 10000; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #toast.show { bottom: 40px; }
 
-        /* BÖLÜM 4: GÖRSEL GALERİ & YENİ PREMIUM 3D ALAN */
-        .visual-gallery { max-width: 1400px; margin: 0 auto; padding: 0 50px 100px 50px; display: flex; flex-direction: column; gap: 100px; }
+        .typography-showcase { background: rgba(12, 12, 14, 0.4); border: 1px solid rgba(255,255,255,0.03); padding: 50px; border-radius: 8px; }
+        .typography-showcase h4 { font-family: 'Josefin Sans', sans-serif; font-size: 2.5rem; font-weight: 400; margin-bottom: 15px; color: #fff; }
+        .typography-showcase p { font-size: 0.85rem; color: #999; line-height: 1.8; letter-spacing: 0.5px; margin-bottom: 25px; }
+        .typography-showcase .alphabet { font-family: 'Josefin Sans', sans-serif; font-size: 1.15rem; color: #ccc; letter-spacing: 3px; word-break: break-all; line-height: 1.6; }
+
+        /* BÖLÜM 4: GÖRSEL GALERİ & PREMIUM 3D ALAN */
+        .visual-gallery { max-width: 1400px; margin: 0 auto; padding: 0 50px 100px 50px; display: flex; flex-direction: column; gap: 120px; }
         
         .gallery-item { position: relative; }
-        .gallery-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #a3aab5; text-transform: uppercase; display: block; text-align: center; margin-bottom: 25px; font-weight: 600; }
+        .gallery-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #a3aab5; text-transform: uppercase; display: block; text-align: center; margin-bottom: 30px; font-weight: 600; }
         
-        /* Dieline İçin Özel Sınırlayıcı Kutu */
-        .dieline-wrapper { max-width: 850px; margin: 0 auto; display: block; }
-        
+        .dieline-wrapper { max-width: 900px; margin: 0 auto; display: block; }
         .showcase-img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 40px 80px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.6s ease; }
-        .showcase-img:hover { transform: scale(1.02); }
+        .showcase-img:hover { transform: scale(1.02); border-color: rgba(102, 48, 134, 0.3); }
 
-        /* PREMIUM 3D ALAN STİLLERİ */
+        /* PREMIUM 3D ALAN */
         .model-container {
             position: relative;
             width: 100%;
-            height: 650px;
+            height: 700px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.05);
-            background: radial-gradient(circle, rgba(102, 48, 134, 0.15) 0%, rgba(10, 10, 12, 0.7) 70%);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 0 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(102, 48, 134, 0.2);
+            background: radial-gradient(circle, rgba(102, 48, 134, 0.15) 0%, rgba(10, 10, 12, 0.9) 70%);
         }
 
         model-viewer {
@@ -154,11 +181,23 @@
         }
 
         @media (max-width: 992px) {
-            .case-study-container { flex-direction: column; padding: 120px 20px 60px 20px; gap: 50px; }
+            .navbar { padding: 20px 30px; }
+            .hamburger { display: flex; z-index: 1002; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(4, 4, 6, 0.98); flex-direction: column; justify-content: center; align-items: center; gap: 40px; transition: right 0.4s; z-index: 1001; }
+            .nav-links.nav-active { right: 0; }
+            .hamburger.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+            .hamburger.toggle span:nth-child(2) { opacity: 0; }
+            .hamburger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+            .case-study-container { padding: 120px 20px 60px 20px; }
+            .back-btn-wrapper { text-align: center; }
+            .case-study-content { flex-direction: column; gap: 50px; }
             .project-meta-side { max-width: 100%; }
-            .design-identity-section { grid-template-columns: 1fr; gap: 50px; padding: 0 20px; margin-bottom: 60px; }
-            .clinical-warning-box { margin: 20px 20px 60px 20px; padding: 30px 20px; }
-            .visual-gallery { padding: 0 20px 80px 20px; gap: 60px; }
+            .design-identity-section { grid-template-columns: 1fr; gap: 50px; padding: 0 20px; margin-bottom: 80px; }
+            .palette-wrapper { text-align: center; }
+            .color-palette { justify-content: center; }
+            .clinical-warning-box { margin: 20px 20px 80px 20px; padding: 40px 20px; }
+            .visual-gallery { padding: 0 20px 80px 20px; gap: 80px; }
             .model-container { height: 450px; }
         }
 
@@ -172,56 +211,87 @@
 
     <div class="custom-cursor" id="cursor"></div>
     <div class="cursor-follower" id="follower"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/></svg></div>
+    
+    <div id="toast"></div>
 
     <div class="project-bg-glow"></div>
     <div id="starField" class="star-field"></div>
 
     <header class="navbar">
-        <a href="index.html" class="logo interactive">meyra.</a>
+        <a href="index.html" class="logo interactive">
+            <img src="m-logo-beyaz.png" alt="Meyra Logo" class="nav-logo">
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
+            <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
+            <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
+            <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
+        </nav>
+        <div class="hamburger interactive" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <div class="case-study-container">
-        <aside class="project-meta-side">
-            <a href="javascript:history.back()" class="back-btn interactive">← GERİ DÖN</a>
-            
-            <div class="editorial-card">
-                <h1>OBLIVION</h1>
-                <div class="project-category">AMBALAJ VE KONSEPT TASARIMI</div>
-                
-                <div class="project-spec-grid">
-                    <div class="spec-item"><span>YIL</span> 2026</div>
-                    <div class="spec-item"><span>ARAÇLAR</span> Photoshop, Illustrator, 3D</div>
-                    <div class="spec-item"><span>TÜR</span> Kurgusal İlaç (Sci-Fi)</div>
-                    <div class="spec-item"><span>ODAK</span> Ambalaj Mimarisi & Doku</div>
+        <div class="back-btn-wrapper">
+            <a href="index.html#calismalar" class="back-btn interactive">← Ana Sayfaya Dön</a>
+        </div>
+        
+        <div class="case-study-content">
+            <aside class="project-meta-side reveal-on-scroll">
+                <div class="editorial-card">
+                    <h1>OBLIVION</h1>
+                    <div class="project-category">AMBALAJ VE KONSEPT TASARIMI</div>
+                    
+                    <div class="project-spec-grid">
+                        <div class="spec-item"><span>YIL</span> 2026</div>
+                        <div class="spec-item"><span>ARAÇLAR</span> Photoshop, Illustrator, 3D</div>
+                        <div class="spec-item"><span>TÜR</span> Kurgusal İlaç (Sci-Fi)</div>
+                        <div class="spec-item"><span>ODAK</span> Ambalaj Mimarisi & Doku</div>
+                    </div>
                 </div>
-            </div>
-        </aside>
+            </aside>
 
-        <main class="project-story-side">
-            <div class="project-description">
-                <p>Oblivion, zihinlerdeki silinmek istenen anıları spesifik olarak hedef alan kurgusal bir farmasötik ürün tasarımıdır. Proje, modern tıbbın steril klinik estetiği ile bilimkurgunun distopik ve karanlık unsurlarını ambalaj yüzeyinde bir araya getirmeyi amaçlar.</p>
-                <p>Tasarımda kullanılan derin mor tonları ve karmaşık floral rölyef dokular; zihnin karmaşıklığını ve hafızanın organik bağlarını temsil ederken, temiz ve rasyonel "Josefin Sans" tipografisi ürünün kimyasal ve tıbbi ciddiyetini vurgular. Oblivion, sadece bir ambalaj değil, aynı zamanda etik sınırları sorgulatan görsel bir senaryodur.</p>
-            </div>
-        </main>
+            <main class="project-story-side reveal-on-scroll" style="transition-delay: 0.2s;">
+                <div class="project-description">
+                    <p>Oblivion, zihinlerdeki silinmek istenen anıları spesifik olarak hedef alan kurgusal bir farmasötik ürün tasarımıdır. Proje, modern tıbbın steril klinik estetiği ile bilimkurgunun distopik ve karanlık unsurlarını ambalaj yüzeyinde bir araya getirmeyi amaçlar.</p>
+                    <p>Tasarımda kullanılan derin mor tonları ve karmaşık floral rölyef dokular; zihnin karmaşıklığını ve hafızanın organik bağlarını temsil ederken, temiz ve rasyonel "Josefin Sans" tipografisi ürünün kimyasal ve tıbbi ciddiyetini vurgular. Oblivion, sadece bir ambalaj değil, aynı zamanda etik sınırları sorgulatan görsel bir senaryodur.</p>
+                </div>
+            </main>
+        </div>
     </div>
 
-    <div class="clinical-warning-box">
+    <div class="clinical-warning-box reveal-on-scroll">
         <h3>KLİNİK PROSEDÜR VE UYARILAR</h3>
         <p>"Silinmesi hedeflenen anıya yoğun bir şekilde odaklanırken, bir (1) kapsül bol su ile yutulur. Etki 20-30 dakika içerisinde başlar. Sadece sertifikalı bir Nöro-Terapist gözetiminde kullanılmalıdır. Beklenmedik duygusal boşluk veya paradoksal nostalji hissine neden olabilir."</p>
     </div>
 
     <div class="design-identity-section">
-        <div class="palette-wrapper">
-            <span class="gallery-label" style="text-align: left;">KONSEPT RENK PALETİ</span>
+        <div class="palette-wrapper reveal-on-scroll">
+            <span class="gallery-label">KONSEPT RENK PALETİ</span>
             <div class="color-palette">
-                <div class="color-swatch"><div class="color-circle" style="background-color: #311e51;"></div><span class="color-hex">#311E51</span></div>
-                <div class="color-swatch"><div class="color-circle" style="background-color: #663086;"></div><span class="color-hex">#663086</span></div>
-                <div class="color-swatch"><div class="color-circle" style="background-color: #111111;"></div><span class="color-hex">#111111</span></div>
-                <div class="color-swatch"><div class="color-circle" style="background-color: #ffffff;"></div><span class="color-hex">#FFFFFF</span></div>
+                <div class="color-swatch interactive" onclick="copyHex('#311E51')">
+                    <div class="color-circle" style="background-color: #311e51;"></div>
+                    <span class="color-hex">#311E51</span>
+                </div>
+                <div class="color-swatch interactive" onclick="copyHex('#663086')">
+                    <div class="color-circle" style="background-color: #663086;"></div>
+                    <span class="color-hex">#663086</span>
+                </div>
+                <div class="color-swatch interactive" onclick="copyHex('#111111')">
+                    <div class="color-circle" style="background-color: #111111;"></div>
+                    <span class="color-hex">#111111</span>
+                </div>
+                <div class="color-swatch interactive" onclick="copyHex('#FFFFFF')">
+                    <div class="color-circle" style="background-color: #ffffff;"></div>
+                    <span class="color-hex">#FFFFFF</span>
+                </div>
             </div>
         </div>
 
-        <div class="typography-showcase">
+        <div class="typography-showcase reveal-on-scroll" style="transition-delay: 0.2s;">
             <h4>Josefin Sans</h4>
             <p>Ürünün farmasötik ciddiyetini ve fütüristik vizyonunu yansıtmak amacıyla, keskin ve geometrik hatlara sahip Josefin Sans font ailesi tercih edilmiştir.</p>
             <div class="alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>0 1 2 3 4 5 6 7 8 9</div>
@@ -230,7 +300,7 @@
 
     <div class="visual-gallery">
         
-        <div class="gallery-item">
+        <div class="gallery-item reveal-on-scroll">
             <span class="gallery-label">KLİNİK PROTOTİP (3D İNTERAKTİF SAHNE)</span>
             
             <div class="model-container interactive">
@@ -258,7 +328,7 @@
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item reveal-on-scroll">
             <span class="gallery-label">AMBALAJ MİMARİSİ (DIELINE)</span>
             <div class="dieline-wrapper">
                 <img src="oblivion/oblivion-01.jpg" alt="Oblivion Kutu Açılımı" class="showcase-img interactive">
@@ -268,7 +338,47 @@
     </div>
 
     <script>
-        // Kursör ve Yıldız Efektleri
+        // RENK KOPYALAMA (TOAST BİLDİRİM) SİSTEMİ
+        function copyHex(hex) {
+            navigator.clipboard.writeText(hex);
+            const toast = document.getElementById('toast');
+            toast.textContent = hex + ' KOPYALANDI';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // GÜNCEL HAMBURGER MENÜ MANTIĞI
+        const hamburgerMenu = document.getElementById('hamburgerMenu'); 
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburgerMenu.addEventListener('click', () => { 
+            hamburgerMenu.classList.toggle('toggle'); 
+            navLinks.classList.toggle('nav-active'); 
+        });
+        
+        const navItemsList = document.querySelectorAll('.nav-item');
+        navItemsList.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                hamburgerMenu.classList.remove('toggle');
+            });
+        });
+
+        // SCROLL REVEAL ANİMASYONU
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.15 }); 
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // KURSÖR VE YILDIZ EFEKTLERİ
         const cursor = document.getElementById('cursor'); const follower = document.getElementById('follower');
         let mX = window.innerWidth / 2, mY = window.innerHeight / 2; let fX = mX, fY = mY;
         
@@ -294,7 +404,7 @@
             starField.appendChild(star);
         }
 
-        // 3D Model Etkileşim Algılayıcı (İpucunu Gizler)
+        // 3D MODEL ETKİLEŞİM ALGILAYICI (İPUCUNU GİZLER)
         const viewer = document.getElementById('oblivionViewer');
         const prompt = document.getElementById('dragPrompt');
 

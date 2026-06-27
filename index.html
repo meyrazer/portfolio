@@ -1,221 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
-<!-- 
-    Designed, Coded and Curated by Meyra Özer.
-    Visual Communication Design ©2026
-    "Seeking the fragile balance between danger and elegance."
--->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meyra Özer | Portfolio ©2026</title>
+    <link rel="icon" type="image/png" href="m-logo-beyaz.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
-        html { scroll-behavior: smooth; }
-        body { background-color: #030305; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-
-        /* PARIL PARLAYAN BEYAZ ÇEKİRDEK KURSÖR */
-        .custom-cursor { 
-            width: 5px; height: 5px; background: #fff; border-radius: 50%; 
-            position: fixed; transform: translate(-50%, -50%); pointer-events: none; 
-            z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; 
-        }
-        .cursor-follower { 
-            width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); 
-            pointer-events: none; z-index: 9998; color: #ffffff; 
-            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(226, 171, 177, 0.5)); 
-            animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; 
-        }
-        .cursor-follower svg { width: 100%; height: 100%; }
-        @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
-
-        body.clicked .custom-cursor { width: 10px; height: 10px; }
-        body.clicked .cursor-follower { width: 44px; height: 44px; }
-        body.hovering .cursor-follower { width: 44px; height: 44px; color: #e2abb1; }
-
-        /* TOZ PEMBE & SİYAH COSMIC NEBULA */
-        .interactive-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; background: #030305; pointer-events: none; }
-        .nebula-1 { position: absolute; width: 900px; height: 900px; background: radial-gradient(circle, rgba(226, 171, 177, 0.35) 0%, transparent 75%); border-radius: 50%; filter: blur(110px); pointer-events: none; transform: translate(-50%, -50%); left: 50%; top: 50%; transition: left 0.5s cubic-bezier(0.1, 0.8, 0.25, 1), top 0.5s cubic-bezier(0.1, 0.8, 0.25, 1); }
-        .nebula-2 { position: absolute; width: 1050px; height: 1000px; background: radial-gradient(circle, rgba(186, 141, 148, 0.15) 0%, transparent 75%); border-radius: 50%; filter: blur(130px); pointer-events: none; transform: translate(-50%, -50%); left: 50%; top: 50%; transition: left 0.7s cubic-bezier(0.1, 0.8, 0.25, 1), top 0.7s cubic-bezier(0.1, 0.8, 0.25, 1); }
-
-        /* SIVI İPEK GİBİ AKAN GENERATİVE DALGA CANVAS'I */
-        #waveCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; opacity: 0.8; }
-
-        /* ÖZGEÇMİŞ İLE BİREBİR EŞİTLENEN CAM EFEKTLİ NAVBAR */
-        .navbar { 
-            position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; 
-            display: flex; justify-content: space-between; align-items: center; z-index: 1000; 
-            background: rgba(4, 4, 6, 0.75); border-bottom: 1px solid rgba(226, 171, 177, 0.04); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-        }
-        .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -1.2px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; transform: scaleX(0.92); transform-origin: left; }
-        .logo::before { content: ''; width: 4px; height: 4px; background: #e2abb1; border-radius: 50%; box-shadow: 0 0 8px #e2abb1; }
-        .nav-links { display: flex; gap: 60px; }
-        .nav-item { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); text-decoration: none; position: relative; padding: 5px 0; transition: color 0.3s ease; }
-        .nav-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: #e2abb1; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1); }
-        .nav-item:hover { color: #fff; }
-        .nav-item:hover::after { transform: scaleX(1); transform-origin: left; }
-
-        /* HERO SECTION */
-        .hero-section { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
-        .hero-meta-badge { font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #bfa0a4; margin-bottom: 40px; font-weight: 700; }
-        
-        .hero-title-main { 
-            font-family: 'Marketing Disparities Demo', 'Cormorant Garamond', serif; font-weight: 300; font-size: 8.5rem; letter-spacing: 4px; display: block; padding: 0.15em 0 !important; line-height: 1.0 !important; 
-            background: linear-gradient(135deg, #ffffff 0%, #f7e1e3 30%, #a39294 65%, #ffffff 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); 
-        }
-        
-        .hero-title-sub { 
-            font-family: 'Montserrat', sans-serif !important; font-weight: 500 !important; font-size: 0.85rem !important; letter-spacing: 6px !important; text-transform: uppercase !important; 
-            color: #bfa0a4 !important; margin-top: 20px !important; display: block; 
-        }
-        
-        .vcd-tag { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 8px; color: rgba(226, 171, 177, 0.3); margin-top: 45px; }
-        .scroll-indicator { position: absolute; bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.25); text-decoration: none; }
-        .scroll-line { width: 1px; height: 35px; background: linear-gradient(to bottom, rgba(226, 171, 177, 0.4), transparent); position: relative; overflow: hidden; }
-        .scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 12px; background: #fff; animation: sDrop 2s infinite; }
-        @keyframes sDrop { 0% { top: -12px; } 100% { top: 35px; } }
-
-        /* AİT OLDUĞU YERE GERİ DÖNEN ÇALIŞMALAR (GRID) */
-        .section-container { max-width: 1500px; margin: 0 auto; padding: 140px 80px; }
-        .section-header-title { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom: 60px; display: flex; align-items: center; gap: 20px; }
-        .section-header-title::after { content: ''; flex: 1; height: 1px; background: rgba(226, 171, 177, 0.08); }
-
-        /* YENİ: KÜRATÖR MANİFESTOSU STİLLERİ EKLENDİ */
-        .curator-manifesto { 
-            margin-top: -30px; 
-            margin-bottom: 60px; 
-            max-width: 700px; 
-            padding-left: 25px; 
-            border-left: 2px solid rgba(226, 171, 177, 0.3); 
-            animation: fadeIn 2s ease forwards;
-        }
-        .curator-manifesto p { 
-            font-family: 'Montserrat', serif; 
-            font-size: 0.9rem; 
-            font-style: bold; 
-            color: rgba(255, 255, 255, 0.778); 
-            line-height: 1.7; 
-            letter-spacing: 0.5px;
-        }
-        .curator-manifesto span { 
-            font-family: 'Syne', sans-serif; 
-            font-size: 0.75rem; 
-            font-style: normal; 
-            font-weight: 700; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            color: #fff; 
-            border-bottom: 1px solid #e2abb1; 
-            padding-bottom: 2px; 
-        }
-
-        .works-showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px 40px; }
-        .work-card { text-decoration: none; color: #fff; display: flex; flex-direction: column; }
-        .work-img-frame { 
-            width: 100%; 
-            aspect-ratio: 920 / 840; 
-            background: #07070a; 
-            border: 1px solid rgba(226, 171, 177, 0.03); 
-            border-radius: 5px; 
-            overflow: hidden; 
-            position: relative; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
-            transition: border-color 0.4s; 
-        }
-        .work-img-frame img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1); 
-        }
-        .work-img-fallback-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: rgba(255,255,255,0.06); z-index: 1; pointer-events: none; }
-        .work-card:hover .work-img-frame { border-color: rgba(226, 171, 177, 0.25); }
-        .work-card:hover .work-img-frame img { transform: scale(1.02); }
-        .work-info-meta { margin-top: 20px; display: flex; justify-content: space-between; align-items: baseline; }
-        .work-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.5px; }
-        .work-type { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: rgba(226, 171, 177, 0.4); letter-spacing: 1px; text-transform: uppercase; }
-
-        /* HAKKIMDA ALANI */
-        .editorial-about-card { background: rgba(10, 10, 14, 0.65); border: 1px solid rgba(255, 255, 255, 0.02); border-left: 3px solid #e2abb1; border-radius: 8px; padding: 50px; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); display: flex; gap: 80px; align-items: flex-start; transition: border-color 0.4s; }
-        .editorial-about-card:hover { border-color: rgba(226, 171, 177, 0.15); }
-        .about-text-side { flex: 1.8; font-family: 'Montserrat', sans-serif; font-size: 1.0rem; line-height: 1.8; font-weight: 500; color: rgba(255, 255, 255, 0.85); }
-        .about-text-side span { color: #e2abb1; font-style: italic; font-weight: 600; }
-        .about-info-grid { flex: 1.2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 30px; border-left: 1px solid rgba(255, 255, 255, 0.04); padding-left: 40px; }
-        .info-block-item h4 { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(226, 171, 177, 0.4); margin-bottom: 8px; }
-        .info-block-item p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 500; color: rgba(255, 255, 255, 0.6); line-height: 1.6; }
-
-        /* PREMIUM İLETİŞİM ALANI VE FORMU */
-        .contact-layout { display: flex; gap: 40px; align-items: stretch; }
-        .contact-info-side { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-        
-        .puzzle-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; border-radius: 6px; background: rgba(255, 255, 255, 0.005); border: 1px solid rgba(226, 171, 177, 0.06); transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s; height: 100%; justify-content: center; }
-        .puzzle-item:hover { background: rgba(226, 171, 177, 0.01); border-color: rgba(226, 171, 177, 0.4); box-shadow: 0 0 15px rgba(226, 171, 177, 0.05); transform: translateY(-2px); }
-        .puzzle-label { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.25); margin-bottom: 12px; }
-        .puzzle-link { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 500; color: rgba(255, 255, 255, 0.85); text-decoration: none; transition: color 0.3s; }
-        .puzzle-item:hover .puzzle-link { color: #fff; }
-
-        .contact-form-side { flex: 1.8; background: rgba(10, 10, 14, 0.65); border: 1px solid rgba(255, 255, 255, 0.02); border-top: 3px solid #e2abb1; border-radius: 8px; padding: 50px; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); }
-        
-        .form-header-premium { margin-bottom: 40px; }
-        .form-premium-subtitle { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 5px; color: #bfa0a4; text-transform: uppercase; display: block; margin-bottom: 12px; }
-        .form-premium-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; font-style: italic; color: #fff; letter-spacing: 1px; }
-
-        .editorial-form { display: flex; flex-direction: column; gap: 35px; }
-        .form-group { position: relative; }
-        
-        .editorial-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; padding: 12px 0; outline: none; transition: all 0.4s ease; }
-        .editorial-input:focus { border-bottom-color: #e2abb1; box-shadow: 0 10px 20px -10px rgba(226, 171, 177, 0.2); }
-        .editorial-input::placeholder { color: rgba(255, 255, 255, 0.3); font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 500; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
-        
-        textarea.editorial-input { resize: none; height: 120px; }
-
-        .submit-btn { align-self: flex-start; font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: #fff; background: rgba(226, 171, 177, 0.15); border: 1px solid rgba(226, 171, 177, 0.3); padding: 15px 40px; border-radius: 30px; cursor: pointer; transition: all 0.4s; }
-        .submit-btn:hover { background: rgba(226, 171, 177, 0.3); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(226, 171, 177, 0.1); }
-
-        /* YENİ: PREMIUM FOOTER STİLLERİ */
-        .premium-footer {
-            padding: 40px 80px; 
-            text-align: center; 
-            border-top: 1px solid rgba(255,255,255,0.02); 
-            margin-top: 100px; 
-            z-index: 10; 
-            position: relative;
-        }
-        .premium-footer p {
-            font-family: 'Syne', sans-serif; 
-            font-size: 0.65rem; 
-            letter-spacing: 3px; 
-            color: rgba(255,255,255,0.3); 
-            text-transform: uppercase;
-        }
-        .premium-footer span {
-            color: #e2abb1; 
-            font-weight: 700;
-        }
-
-        /* RESPONSIVE AYARLARI */
-        @media (max-width: 1200px) {
-            .works-showcase-grid { grid-template-columns: repeat(2, 1fr); }
-            .editorial-about-card { flex-direction: column; gap: 40px; }
-            .about-info-grid { grid-template-columns: 1fr; border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 30px; width: 100%; }
-            .contact-layout { flex-direction: column; }
-        }
-        @media (max-width: 992px) {
-            .section-container { padding: 80px 24px; }
-            .navbar { padding: 30px 24px; }
-            .hero-title-main { font-size: 4.5rem; }
-            .works-showcase-grid { grid-template-columns: 1fr; gap: 45px; }
-            .custom-cursor { display: none; }
-            .contact-form-side { padding: 30px; }
-            .premium-footer { padding: 30px 24px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -233,14 +28,23 @@
 
     <canvas id="waveCanvas"></canvas>
 
-    <header class="navbar">
-        <a href="#" class="logo interactive">meyra.</a>
+  <header class="navbar">
+        <a href="#" class="logo interactive">
+            <img src="m-logo-beyaz.png" alt="Meyra Logo" class="nav-logo">
+        </a>
+        
         <nav class="nav-links">
             <a href="#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
             <a href="#hakkimda" class="nav-item interactive">HAKKIMDA</a>
             <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
             <a href="#iletisim" class="nav-item interactive">İLETİŞİM</a>
         </nav>
+
+        <div class="hamburger interactive" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <section class="hero-section">
@@ -258,7 +62,6 @@
     <section class="section-container" id="calismalar">
         <h3 class="section-header-title">Seçilmiş Çalışmalar</h3>
 
-        <!-- YENİ EKLENEN MANİFESTO (PROLOGUE) -->
         <div class="curator-manifesto">
             <p>İçinde bulunduğunuz bu dijital arayüz; sıradan bir galeri değil, her bir pikselini bizzat tasarlayıp kodladığım bütünsel bir deneyim alanıdır.</p>
         </div>
@@ -331,24 +134,12 @@
                 </div>
             </a>
 
-            <a href="cheetos.html" class="work-card interactive">
-                <div class="work-img-frame">
-                    <span class="work-img-fallback-text">cheetos</span>
-                    <img src="cheetos/cheetos-01.jpg" alt="Cheetos">
-                </div>
-                <div class="work-info-meta">
-                    <span class="work-name">Cheetos Concept</span>
-                    <span class="work-type">Ambalaj Tasarımı</span>
-                </div>
-            </a>
-
         </div>
     </section>
 
     <section class="section-container" id="hakkimda">
         <h3 class="section-header-title">Hakkımda</h3>
         <div class="editorial-about-card">
-            <!-- YENİ: HAKKIMDA METNİ EDİTORYAL DOKUNUŞ İLE GÜNCELLENDİ -->
             <div class="about-text-side">
                 İstanbul'da yaşayan bir <span>Görsel İletişim Tasarımı</span> öğrencisiyim. Tipografi, estetik konseptler ve dijital yayıncılık üzerine yoğunlaşarak tasarımlar yaratıyorum. Dijital alanları editoryal birer yayın organı olarak görüyor; bu doğrultuda kendi portfolyo alanım da dahil olmak üzere tüm arayüzleri <span>bizzat tasarlayıp kodlarla inşa ediyorum.</span>
             </div>
@@ -416,9 +207,8 @@
         
     </section>
 
-    <!-- YENİ EKLENEN PREMIUM FOOTER İMZASI -->
     <footer class="premium-footer">
-        <p>DESIGNED, CODED & CURATED WITH DANGER AND ELEGANCE BY <span>Meyra Özer</span> ©2026</p>
+        <p>Designed, Coded & Curated with danger and elegance by <span>Meyra Özer</span> ©2026</p>
     </footer>
 
     <script>
@@ -509,7 +299,28 @@
             }, 300);
         });
 
-        // YENİ EKLENEN GİZLİ YAZILIMCI İMZASI (CONSOLE EASTER EGG)
+        // ==========================================
+        // EKLENEN HAMBURGER MENÜ MANTIĞI
+        // ==========================================
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItemsList = document.querySelectorAll('.nav-item');
+
+        if (hamburgerMenu && navLinks) {
+            hamburgerMenu.addEventListener('click', () => {
+                hamburgerMenu.classList.toggle('toggle');
+                navLinks.classList.toggle('nav-active');
+            });
+
+            // Menü içindeki linklerden birine tıklanınca menünün kapanması
+            navItemsList.forEach(item => {
+                item.addEventListener('click', () => {
+                    hamburgerMenu.classList.remove('toggle');
+                    navLinks.classList.remove('nav-active');
+                });
+            });
+        }
+
         console.log(
             "%c Designed & Coded by Meyra Özer %c ©2026 ",
             "background: #e2abb1; color: #030305; padding:5px; font-family: 'Syne', sans-serif; font-weight: bold;",

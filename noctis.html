@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noctis | Dijital Menü Deneyimi</title>
+    <link rel="icon" type="image/png" href="m-logo-beyaz.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,21 +17,23 @@
         body { background-color: #030305; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         a, button, .interactive { cursor: none !important; }
 
-        /* PERFORMANS ODAKLI KURSÖR SİSTEMİ */
-        .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; will-change: transform; }
-        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
+        /* PERFORMANS ODAKLI VE BUKALEMUN KURSÖR SİSTEMİ (MIX-BLEND-MODE) */
+        .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: width 0.2s, height 0.2s; will-change: transform; }
+        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; mix-blend-mode: difference; animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
         .cursor-follower svg { width: 100%; height: 100%; }
-        @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
+        @keyframes starPulse { 0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
 
-        /* ANA NAVBAR */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(3, 3, 5, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
-        .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -1.2px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo::before { content: ''; width: 4px; height: 4px; background: #e2abb1; border-radius: 50%; box-shadow: 0 0 8px #e2abb1; }
+        /* ANA NAVBAR (GÜNCELLENMİŞ VERSİYON) */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 26px 80px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(4, 4, 6, 0.75); border-bottom: 1px solid rgba(226, 171, 177, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .nav-logo { height: 45px; width: auto; object-fit: contain; display: block; }
         .nav-links { display: flex; gap: 60px; }
         .nav-item { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); text-decoration: none; position: relative; padding: 5px 0; transition: color 0.3s ease; }
+        .nav-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: #e2abb1; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1); }
         .nav-item:hover { color: #fff; }
-        .hamburger { display: none; flex-direction: column; gap: 6px; z-index: 1002; }
-        .hamburger span { width: 30px; height: 2px; background: #fff; transition: 0.4s; border-radius: 2px; }
+        .nav-item:hover::after { transform: scaleX(1); transform-origin: left; }
+        
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: #fff; transition: all 0.4s ease; border-radius: 2px; }
 
         /* OPTİMİZE EDİLMİŞ ARKA PLAN IŞIKLARI VE YILDIZLAR */
         .project-bg-glow { position: fixed; top: 50%; left: 50%; width: 1000px; height: 1000px; background: radial-gradient(circle, var(--noctis-glow) 0%, transparent 60%); filter: blur(100px); z-index: -2; pointer-events: none; opacity: 0.5; animation: pulseGlow 8s ease-in-out infinite alternate; will-change: transform, opacity; }
@@ -39,7 +42,10 @@
         .star-field { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -3; overflow: hidden; }
         .star { position: absolute; background-color: rgba(255, 255, 255, 0.8); border-radius: 50%; animation: twinkle linear infinite alternate; will-change: opacity, transform; }
         @keyframes twinkle { 0% { opacity: 0.1; transform: scale(0.8); } 100% { opacity: 0.9; transform: scale(1.2); } }
-
+/* GERİ DÖN BUTONU */
+        .back-btn-wrapper { width: 100%; max-width: 900px; margin: 0 auto 30px auto; text-align: left; }
+        .back-btn { font-family: 'Montserrat', sans-serif; color: #a3aab5; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; display: inline-block; transition: color 0.3s; text-transform: uppercase; }
+        .back-btn:hover { color: #fff; }
         /* PROJE BAŞLIK ALANI */
         .noctis-header { width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 10; padding-top: 150px; padding-bottom: 60px; }
         .noctis-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; color: #a3aab5; letter-spacing: 6px; margin-bottom: 20px; }
@@ -90,26 +96,39 @@
         .reservation-block { text-align: center; margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(0,0,0,0.2); }
         .reservation-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #111; margin-bottom: 30px; letter-spacing: 2px; }
         .reservation-block p { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.8; color: #333; margin-bottom: 20px; }
-
+        
         /* ========================================= */
-        /* RESPONSIVE TASARIM (YENİ NESİL KURAL)     */
+        /* RESPONSIVE TASARIM VE MOBİL MENÜ SİSTEMİ   */
         /* ========================================= */
 
-        /* KURAL 1: Ekran daraldığında menü düzenini toparla (İmlece karışma!) */
         @media (max-width: 992px) {
-            .navbar { padding: 20px 30px; }
-            .hamburger { display: flex; cursor: pointer; }
-            .nav-links { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(3, 3, 5, 0.98); flex-direction: column; justify-content: center; align-items: center; gap: 40px; transition: right 0.4s; z-index: 1001; }
-            .nav-links.active { right: 0; }
+            .navbar { padding: 20px 24px; }
+            .hamburger { display: flex; z-index: 1002; }
+            
+            .nav-links { 
+                position: fixed; right: -100%; top: 0; width: 100%; height: 100vh; 
+                background: rgba(3, 3, 5, 0.98); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); 
+                flex-direction: column; justify-content: center; align-items: center; gap: 45px; 
+                transition: right 0.5s cubic-bezier(0.7, 0, 0.3, 1); z-index: 1000;
+            }
+            .nav-links.nav-active { right: 0; }
+            .nav-item { font-size: 1.4rem; letter-spacing: 4px; }
+
+            /* Hamburger Çarpı Animasyonu */
+            .hamburger.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+            .hamburger.toggle span:nth-child(2) { opacity: 0; }
+            .hamburger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
             .noctis-title { font-size: 4rem; }
             .project-spec-grid { grid-template-columns: 1fr 1fr; }
             .project-meta-center { padding: 30px; margin: 0 20px 60px 20px; }
             .menu-paper { padding: 50px 30px; }
             .item-desc { max-width: 100%; }
             .back-to-categories-btn { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.65rem; }
+            .back-btn-wrapper { text-align: center; }
         }
 
-        /* KURAL 2: SADECE CİHAZ DOKUNMATİKSE (TELEFON/TABLET) KURSÖRÜ GİZLE */
+        /* SADECE CİHAZ DOKUNMATİKSE KURSÖRÜ GİZLE */
         @media (pointer: coarse) {
             .custom-cursor, .cursor-follower { display: none !important; }
             body, a, button, .interactive, .info-btn { cursor: auto !important; }
@@ -125,25 +144,40 @@
     <div class="project-bg-glow"></div>
 
     <header class="navbar">
-        <a href="index.html" class="logo interactive">meyra.</a>
-        <div class="hamburger interactive" id="hamburger"><span></span><span></span><span></span></div>
+        <a href="index.html" class="logo interactive">
+            <img src="m-logo-beyaz.png" alt="Meyra Logo" class="nav-logo">
+        </a>
+        
         <nav class="nav-links" id="navLinks">
             <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
             <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
             <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
             <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
         </nav>
+
+        <div class="hamburger interactive" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <a href="#kategoriler-alani" class="back-to-categories-btn interactive" id="backToTopBtn">
-        <svg viewBox="0 0 24 24"><path d="M12 5 L12 19 M12 5 L6 11 M12 5 L18 11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 5 L12 19 M12 5 L6 11 M12 5 L18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Kategoriler</span>
     </a>
 
     <section class="noctis-header">
+        <section class="noctis-header">
+        
+        <div class="back-btn-wrapper">
+            <a href="index.html#calismalar" class="back-btn interactive">← Ana Sayfaya Dön</a>
+        </div>
+
         <div class="noctis-subtitle">the MENU</div>
         <h1 class="noctis-title">Noctis</h1>
     </section>
+        
 
     <div class="project-meta-center">
         <div class="project-spec-grid">
@@ -202,10 +236,9 @@
             <div class="menu-item"><div class="item-header"><div class="item-name">Ay Tuzunda Karides</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Sarımsak, biberiye ve ay tuzu ile sotelenmiş karidesler. Gece limonu rendesiyle servis edilir.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Köz Patlıcanlı Peynir Kroketleri</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">İçinde közlenmiş patlıcan ve baharatlı peynir dolgusu bulunan çıtır kroketler. Yanında tütsülenmiş yoğurt sosu ile sunulur.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Gece Baharatlı Mini Börekler</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Yufka içine mor fesleğen, karabiberli lor ve siyah zeytin harcı sarılıp kızartılır. Yanında lavanta aromalı dip sosla sunulur.</div><div class="nutrition-tooltip"></div></div>
-
+            
             <h2 class="menu-cat-title" id="ana-yemekler-et" style="margin-top: 60px;">ANA YEMEKLER</h2>
             <h3 class="menu-cat-subtitle">ET & TAVUK & BALIK</h3>
-            
             <div class="menu-item"><div class="item-header"><div class="item-name">Kanlı Ay Bonfile</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Uzun süre marine edilmiş dana bonfile, kan portakalı glazesi ve gece baharatlarıyla ızgara edilerek servis edilir. Yanında közlenmiş sebzeler ve lavanta tuzlu patates eşlik eder.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Şarap Soslu Sırlı Antrikot</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Kırmızı şarap sosunda yavaş pişirilmiş antrikot, karanfil ve kekik aromalarıyla derinleştirilmiş. Yanında ay ışığı püre ve karamellize arpacık soğan ile sunulur.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Karanlık Soslu Dana Kaburga</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">12 saat düşük ısıda pişmiş dana kaburga, siyah sarımsak ve demirhindi bazlı özel "karanlık sos" ile servis edilir. Gece sebzeleri garnitürüyle tamamlanır.</div><div class="nutrition-tooltip"></div></div>
@@ -216,7 +249,6 @@
 
             <h2 class="menu-cat-title" id="ana-yemekler-vegan" style="margin-top: 60px;">ANA YEMEKLER</h2>
             <h3 class="menu-cat-subtitle">VEGAN & GLUTENSİZ</h3>
-
             <div class="menu-item"><div class="item-header"><div class="item-name">Sisli Orman Bowl</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Fırınlanmış istiridye, shiitake ve kestane mantarları; tütsülenmiş nohut, köz mor lahana ve kinoa ile bir araya gelir. Hafif sarımsaklı tahin sosuyla tamamlanır. Dengeli ve besleyici bir orman şöleni.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Lavanta Buharlı Sebze Rüyası</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Buharda lavanta aromasıyla pişirilmiş havuç, brokoli, Brüksel lahanası ve kabak; zeytinyağlı kinoa yatağında sunulur. Hafifliğiyle öne çıkar, ferah bir tabak deneyimi sunar.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Gece Renkli Mercimek Ezmesi</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Siyah, yeşil ve kırmızı mercimekten oluşan özel baharatlı ezme; zeytinyağlı avokado dilimleri ve glütensiz nohut krakerleriyle birlikte servis edilir. Yumuşak ve tok bir lezzet dokusu taşır.</div><div class="nutrition-tooltip"></div></div>
@@ -299,7 +331,7 @@
             <div class="menu-item"><div class="item-header"><div class="item-name">Noctis Tarhun Likörü</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Karanlık ve keskin aromasıyla gece kokteyllerine karakter katar. Sınırlı üretim.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Gece Makarna Seti</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">Mürekkep balığı mürekkebiyle siyah renge sahip özel makarna + gece sosu + tarif kartı.</div><div class="nutrition-tooltip"></div></div>
             <div class="menu-item"><div class="item-header"><div class="item-name">Ritüel Kartları Serisi</div><button class="info-btn interactive" onclick="toggleNutrition(this)"><svg viewBox="0 0 24 24"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z"/></svg></button></div><div class="item-desc">NOCTIS'te sunulan bazı tariflerin özel versiyonları. İçinde küçük gecelik ritüel notları da yer alır. Koleksiyonluk!</div><div class="nutrition-tooltip"></div></div>
-
+            
             <div class="reservation-block" id="rezervasyon">
                 <h3>REZERVASYON & İLETİŞİM</h3>
                 <p>NOCTIS, sakinliği sevenlerin gecesini unutulmaz kılmak için sınırlı kapasitede hizmet verir.<br>Rezervasyon yaptırarak karanlığın içindeki masanıza yerinizi ayırtın.</p>
@@ -339,8 +371,14 @@
             currentTooltip.classList.toggle('active');
         }
 
-        const hamburger = document.getElementById('hamburger'); const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
+        // GÜNCELLENMİŞ HAMBURGER MENÜ MANTIĞI
+        const hamburgerMenu = document.getElementById('hamburgerMenu'); 
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburgerMenu.addEventListener('click', () => { 
+            hamburgerMenu.classList.toggle('toggle'); 
+            navLinks.classList.toggle('nav-active'); 
+        });
 
         // SAĞ ALTTAN ÇIKAN "KATEGORİLER" BUTONU MANTIĞI
         const backToTopBtn = document.getElementById('backToTopBtn');
@@ -362,6 +400,7 @@
             starField.appendChild(star);
         }
 
+        // İMLEÇ MANTIĞI
         const cursor = document.getElementById('cursor'); const follower = document.getElementById('follower');
         let mX = window.innerWidth / 2, mY = window.innerHeight / 2; let fX = mX, fY = mY;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; cursor.style.left = mX + 'px'; cursor.style.top = mY + 'px'; });
