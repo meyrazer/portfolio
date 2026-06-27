@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beyaz Gölgeler | Meyra Özer</title>
+    <link rel="icon" type="image/png" href="m-logo-beyaz.png">
+    
     <link rel="stylesheet" href="style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +13,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        @font-face {
+            font-family: 'Gemola';
+            src: url('Gemola-wooyn.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         /* PROJEYE ÖZEL RENK AYARI */
         :root {
-            --project-glow-color: rgba(186, 181, 171, 0.25); /* Kapağın o asil dumanlı platin/gümüş aurası */
+            --project-glow-color: rgba(186, 181, 171, 0.25); 
         }
 
         body {
@@ -118,8 +127,6 @@
             letter-spacing: 1px !important;
             text-transform: none !important; 
             font-weight: 400 !important; 
-            
-            /* İSTEDİĞİN GİBİ: Bulanık parlamalar silindi, harfler jilet gibi net ve keskin kaldı */
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.95)) !important;
         }
 
@@ -189,14 +196,18 @@
             gap: 60px;
         }
 
-        /* KEMİK İSKELET BÖLÜM 2: METİN BİTTİKTEN SONRA EKRANI KAPLAYAN DEV GALERİ */
+        /* -----------------------------------------------------------
+           KEMİK İSKELET BÖLÜM 2: DEV GALERİ (KÜÇÜLTÜLMÜŞ VERSİYON)
+           Buradaki genişlikleri kısarak o boğucu hissi ortadan kaldırdık.
+           ----------------------------------------------------------- */
         .full-width-visuals {
-            max-width: 1600px;
+            max-width: 1100px; /* Eski 1600px yerine 1100px yaparak ekranı tamamen kaplamasını engelledik */
             margin: 0 auto;
             padding: 0 50px 140px 50px;
             display: flex;
             flex-direction: column;
-            gap: 80px;
+            align-items: center; /* Fotoğrafları tam merkeze çektik */
+            gap: 70px;
         }
 
         /* GENEL GÖRSEL STİLLERİ */
@@ -211,13 +222,17 @@
             transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
         .showcase-img:hover {
-            transform: scale(1.01);
+            transform: scale(1.02); /* Tıklanabilirlik hissini artırmak için hafif büyütüldü */
             box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 40px rgba(255,255,255,0.05);
         }
 
         .img-wide { width: 100%; }
         .img-focus { width: 85%; align-self: flex-end; }
-        .img-centered { width: 100%; max-width: 1200px; margin: 0 auto; }
+        .img-centered { 
+            width: 85%; /* Ekranda nefes alması için sağdan soldan boşluk bırakıldı */
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
 
         /* TELEFON UYUMU */
         @media (max-width: 992px) {
@@ -229,22 +244,43 @@
             .project-meta-side { max-width: 100%; }
             .case-study-container .editorial-card h1 { font-size: 2.3rem !important; }
             .full-width-visuals { padding: 0 20px 100px 20px; gap: 40px; }
-            .img-focus, .img-centered { width: 100%; }
+            .img-focus, .img-centered { width: 100%; } /* Telefondaysa mecburen tam ekran olsun */
         }
     </style>
 </head>
 <body>
 
-    <div class="star-field" id="starField"></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="follower">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/>
+        </svg>
+    </div>
 
+    <header class="navbar">
+        <a href="index.html" class="logo interactive">
+            <img src="m-logo-beyaz.png" alt="Meyra Logo" class="nav-logo">
+        </a>
+        <nav class="nav-links">
+            <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
+            <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
+            <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
+            <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
+        </nav>
+        <div class="hamburger interactive" id="hamburgerMenu">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <div class="star-field" id="starField"></div>
     <div class="project-bg-glow"></div>
 
     <div class="case-study-container">
         
         <aside class="project-meta-side">
-            <a href="javascript:history.back()" class="back-btn">← GERİ DÖN</a>
+            <a href="javascript:history.back()" class="back-btn interactive">← GERİ DÖN</a>
             
-            <div class="editorial-card">
+            <div class="editorial-card interactive">
                 <h1><span>BEYAZ</span> <span>GÖLGELER</span></h1>
                 <div class="project-category">KİTAP KAPAĞI TASARIMI</div>
                 
@@ -271,18 +307,19 @@
         </aside>
 
         <main class="project-visuals-side">
-            <img src="beyaz-golgeler/bg-01.jpg" alt="Beyaz Gölgeler Tam Kapak" class="showcase-img img-wide">
-            <img src="beyaz-golgeler/bg-02.jpg" alt="Kapak Detay Sahneleri" class="showcase-img img-focus">
+            <img src="beyaz-golgeler/bg-01.jpg" alt="Beyaz Gölgeler Tam Kapak" class="showcase-img img-wide interactive">
+            <img src="beyaz-golgeler/bg-02.jpg" alt="Kapak Detay Sahneleri" class="showcase-img img-focus interactive">
         </main>
 
     </div>
 
     <section class="full-width-visuals">
-        <img src="beyaz-golgeler/bg-03.jpg" alt="Kitap Mockup Üst Görünüm" class="showcase-img img-centered">
-        <img src="beyaz-golgeler/bg-04.jpg" alt="İç Sayfalar ve Sırt Detayı" class="showcase-img img-centered">
+        <img src="beyaz-golgeler/bg-03.jpg" alt="Kitap Mockup Üst Görünüm" class="showcase-img img-centered interactive">
+        <img src="beyaz-golgeler/bg-04.jpg" alt="İç Sayfalar ve Sırt Detayı" class="showcase-img img-centered interactive">
     </section>
 
     <script>
+        // YILDIZ EFEKTİ (Beyaz Gölgeler'e Özel)
         const starField = document.getElementById('starField');
         const starCount = 45; 
         for (let i = 0; i < starCount; i++) {
@@ -296,6 +333,59 @@
             star.style.animationDuration = Math.random() * 7 + 6 + 's'; 
             starField.appendChild(star);
         }
+
+        // GLOBAL KURSÖR
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('follower');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let fX = mouseX;
+        let fY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function updateFollower() {
+            fX += (mouseX - fX) * 0.12; 
+            fY += (mouseY - fY) * 0.12;
+            follower.style.left = fX + 'px';
+            follower.style.top = fY + 'px';
+            requestAnimationFrame(updateFollower);
+        }
+        updateFollower();
+
+        const interactives = document.querySelectorAll('.interactive');
+        interactives.forEach(item => {
+            item.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            item.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        document.addEventListener('click', () => {
+            document.body.classList.add('clicked');
+            setTimeout(() => { document.body.classList.remove('clicked'); }, 300);
+        });
+
+        // GLOBAL HAMBURGER MENÜ
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItemsList = document.querySelectorAll('.nav-item');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-active');
+                hamburger.classList.toggle('toggle');
+            });
+        }
+        navItemsList.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+            });
+        });
     </script>
 
 </body>

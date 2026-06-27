@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barutla Vals | Meyra Özer</title>
+    <link rel="icon" type="image/png" href="m-logo-beyaz.png">
+    
+    <!-- GLOBAL CSS BAĞLANTISI (Navbar, Cursor ve Temel Ayarlar) -->
+    <link rel="stylesheet" href="style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,16 +24,7 @@
         /* PROJEYE ÖZEL SOĞUK METALİK RENK AYARI */
         :root { --project-glow-color: #4f3754e3; }
 
-        body { padding: 0 !important; background-color: #080808; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; cursor: none !important; }
-        html { scroll-behavior: smooth; }
-        a, button, .interactive { cursor: none !important; }
-
-        /* KURSÖR SİSTEMİ */
-        .custom-cursor { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #fff, 0 0 20px #e2abb1; transition: width 0.2s, height 0.2s; will-change: transform; }
-        .cursor-follower { width: 32px; height: 32px; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998; color: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(226, 171, 177, 0.5)); animation: starPulse 2.5s ease-in-out infinite alternate; transition: width 0.3s, height 0.3s; will-change: transform; }
-        .cursor-follower svg { width: 100%; height: 100%; }
-        @keyframes starPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9) rotate(0deg); } 100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.15) rotate(10deg); } }
+        body { background-color: #080808; overflow-x: hidden; }
 
         /* ÖZEL SOĞUK AMBİANS IŞIĞI */
         .project-bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 900px; background: radial-gradient(circle, var(--project-glow-color) 0%, transparent 75%); filter: blur(120px); z-index: -1; pointer-events: none; opacity: 0.6; animation: pulseGlow 8s ease-in-out infinite alternate; will-change: opacity, transform; }
@@ -94,18 +89,29 @@
             .stagger-down { margin-top: 0; }
             .img-focus { width: 100%; }
         }
-
-        /* Dokunmatik Ekranlarda Kursörü Gizle */
-        @media (pointer: coarse) {
-            .custom-cursor, .cursor-follower { display: none !important; }
-            body, a, button, .interactive { cursor: auto !important; }
-        }
     </style>
 </head>
 <body>
 
+    <!-- GLOBAL KURSÖR -->
     <div class="custom-cursor" id="cursor"></div>
     <div class="cursor-follower" id="follower"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z" fill="currentColor"/></svg></div>
+
+    <!-- GLOBAL NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo interactive">
+            <img src="m-logo-beyaz.png" alt="Meyra Logo" class="nav-logo">
+        </a>
+        <nav class="nav-links">
+            <a href="index.html#calismalar" class="nav-item interactive">ÇALIŞMALAR</a>
+            <a href="index.html#hakkimda" class="nav-item interactive">HAKKIMDA</a>
+            <a href="ozgecmis.html" class="nav-item interactive">ÖZGEÇMİŞ</a>
+            <a href="index.html#iletisim" class="nav-item interactive">İLETİŞİM</a>
+        </nav>
+        <div class="hamburger interactive" id="hamburgerMenu">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
 
     <div class="star-field" id="starField"></div>
     <div class="project-bg-glow"></div>
@@ -115,7 +121,7 @@
         <aside class="project-meta-side">
             <a href="barutla-vals-serisi.html" class="back-btn interactive">← SERİYE DÖN</a>
             
-            <div class="editorial-card">
+            <div class="editorial-card interactive">
                 <h1><span>BARUTLA</span> <span>VALS</span></h1>
                 <div class="project-category">KİTAP KAPAĞI TASARIMI</div>
                 
@@ -140,6 +146,7 @@
 
     </div>
 
+    <!-- EDİTORYAL ASİMETRİK GALERİ -->
     <section class="premium-gallery">
         <div class="gallery-grid">
             <div class="gallery-item">
@@ -151,8 +158,9 @@
         </div>
     </section>
 
+    <!-- SADECE JAVASCRIPT KODLARI -->
     <script>
-        // Uçuşan Yıldızlar
+        // Uçuşan Yıldızlar (Barutla Vals'e özel)
         const starField = document.getElementById('starField');
         const starCount = 40; 
         for (let i = 0; i < starCount; i++) {
@@ -167,7 +175,7 @@
             starField.appendChild(star);
         }
 
-        // Kusursuz Fare Takip Sistemi
+        // Global Kursör ve Etkileşimler
         const cursor = document.getElementById('cursor'); 
         const follower = document.getElementById('follower');
         let mX = window.innerWidth / 2, mY = window.innerHeight / 2; let fX = mX, fY = mY;
@@ -185,6 +193,35 @@
             requestAnimationFrame(updateFollower); 
         } 
         updateFollower();
+
+        const interactives = document.querySelectorAll('.interactive');
+        interactives.forEach(item => {
+            item.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            item.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        document.addEventListener('click', () => {
+            document.body.classList.add('clicked');
+            setTimeout(() => { document.body.classList.remove('clicked'); }, 300);
+        });
+
+        // Global Hamburger Menü
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItemsList = document.querySelectorAll('.nav-item');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-active');
+                hamburger.classList.toggle('toggle');
+            });
+        }
+        navItemsList.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+            });
+        });
     </script>
 
 </body>
