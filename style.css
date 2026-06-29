@@ -145,3 +145,49 @@ textarea.editorial-input { resize: none; height: 120px; }
     .contact-form-side { padding: 30px; }
     .premium-footer { padding: 30px 24px; }
 }
+
+/* ========================================= */
+/* MASAÜSTÜ PORTFOLIO YAZISINI BİRLEŞTİRME   */
+/* ========================================= */
+.hero-title-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0; /* Aradaki boşlukları sıfırlar */
+}
+
+/* ========================================= */
+/* MOBİLDE KUSURSUZ HİZALAMA VE BOŞLUKLAR    */
+/* ========================================= */
+@media (max-width: 992px) {
+    .hero-title-main {
+        font-size: 5.5rem !important; /* Ekrana daha iyi oturması için bir tık küçülttük */
+        line-height: 1.1 !important; /* Heceler arası mesafeyi açtık (0.9'dan 1.1'e çıktı) */
+        letter-spacing: 2px !important;
+        flex-direction: column; /* Alt alta dizdik */
+    }
+    
+    .hero-title-main .syl {
+        display: block;
+    }
+
+    /* VISUAL COMMUNICATION DESIGN Yazısını Alt Alta Alma */
+    .vcd-tag {
+        max-width: 220px; /* Genişliği kısıtlayarak metni alt satıra inmeye zorladık */
+        margin: 35px auto 0 auto; /* Tam ortaya hizaladık */
+        line-height: 1.8; /* Satırlar arası ferahlık verdik */
+        display: block;
+    }
+}
+
+/* ========================================= */
+/* DOKUNMATİK EKRANLARDA KURSÖRÜ GİZLEME     */
+/* ========================================= */
+@media (pointer: coarse) {
+    .custom-cursor, .cursor-follower { 
+        display: none !important; 
+    }
+    body, a, button, .interactive, .nav-item { 
+        cursor: auto !important; 
+    }
+}
