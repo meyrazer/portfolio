@@ -1,9 +1,10 @@
 /* ÖZEL FONT TANIMLAMALARI */
 @font-face {
-    font-family: 'MarketingDisparities';
-    src: url('marketing.otf') format('opentype'); /* uzantıya dikkat: .otf için opentype */
+    font-family: 'Marketing Disparities Demo';
+    src: url('MarketingDisparitiesDemoRegular-m27a9.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 /* GENEL AYARLAR */
